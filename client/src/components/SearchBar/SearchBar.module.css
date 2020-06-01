@@ -1,0 +1,55 @@
+.SearchInactive {
+  width: 86%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  color: #eee;
+  background-color: rgb(86, 86, 97);
+  margin: auto;
+  border-radius: 15px;
+}
+.SearchActive {
+  width: 86%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  color: #eee;
+  background-color: white;
+  margin: auto;
+  border-radius: 15px;
+}
+.SearchInactive span {
+  display: flex;
+  margin-left: 10px;
+  width: 15px;
+  height: 15px;
+}
+.SearchActive span {
+  color: black;
+  display: flex;
+  margin-left: 10px;
+  width: 15px;
+  height: 15px;
+}
+.SearchActive input, .SearchInactive input {
+  background-color: inherit;
+  border: 0;
+  margin: auto 5px auto 10px;
+  width: 70.5%;
+}
+.XIconActive {
+  padding: 0;
+  background-color: inherit;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+}
+.XIconActive:hover {
+  color: rgb(43, 43, 43);
+}
+.XIconInactive {
+  display: none;
+}

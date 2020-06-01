@@ -1,0 +1,55 @@
+.SortBtn {
+  position: fixed;
+  left: 290px;
+  top: 67px;
+  cursor: pointer;
+  color: black;
+}
+.SortBtn:hover {
+  background-color: rgb(173, 172, 180, 0.5);
+}
+.SortBtn:hover > span {
+  visibility: visible;
+  animation: fadeIn 0.5s;
+}
+.SortBtn > span {
+  animation: fadeOut 0.3s;
+}
+.SortPopup {
+  visibility: hidden;
+  font-size: 11px;
+  width: 73px;
+  height: 12px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: fixed;
+  z-index: 1000;
+  top: 30px;
+  left: 263px;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SortPopup::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  animation: fadeOut 1s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

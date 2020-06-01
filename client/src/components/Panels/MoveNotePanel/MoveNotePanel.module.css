@@ -1,0 +1,75 @@
+.MoveToPanel {
+  position: fixed;
+  top: 40px;
+  left: 320px;
+  width: 640px;
+  height: 500px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+  padding-top: 12px;
+}
+.MoveToPanelTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(55, 55, 55);
+  margin: auto 20px;
+  padding: 0 5px 10px 10px;
+  border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+}
+.MoveToBtn {
+  border: 0;
+  margin-right: 20px;
+  padding: 5px 13px;
+  font-size: 16px;
+  float: right;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MoveToBtn:enabled {
+  background-color: rgb(104, 136, 252, 0.5);
+}
+.MoveToPanelTitle span {
+  float: right;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MoveToPanelTitle span:hover {
+  background-color: rgb(173, 172, 180, 0.5);
+}
+.MoveToPanelNotebooks {
+  height: 452px;
+  margin: 0 30px 0 40px;
+  padding-right: 10px;
+  font-size: 17px;
+  margin-top: 5px;
+  font-weight: 450;
+  overflow-y: auto;
+}
+.MoveToPanelNotebooks div {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding-left: 15px;
+}
+.MoveToPanelNotebooksIcon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 7px;
+}
+.MoveToPanelNotebooksText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.InactiveNotebook:hover {
+  background-color: rgb(173, 172, 180, 0.2);
+}
+.ActiveNotebook {
+  background-color: rgb(104, 136, 252, 0.2);
+  color: rgb(104, 136, 252);
+}

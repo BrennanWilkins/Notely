@@ -1,0 +1,62 @@
+.SettingsBtn {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 23px;
+  top: 67px;
+  left: 260px;
+}
+.SettingsIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 0;
+}
+.SettingsBtn:hover {
+  background-color: rgb(173, 172, 180, 0.5);
+}
+.SettingsBtn:hover > span {
+  visibility: visible;
+  animation: fadeIn 0.5s;
+}
+.SettingsBtn > span {
+  animation: fadeOut 0.3s;
+}
+.SettingsPopup {
+  visibility: hidden;
+  font-size: 11px;
+  width: 73px;
+  height: 20px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: fixed;
+  z-index: 100;
+  top: 23px;
+  left: 233px;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SettingsPopup::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  animation: fadeOut 1s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

@@ -1,0 +1,119 @@
+.Container {
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: rgb(104, 136, 252, 0.5);
+  background-image: linear-gradient(to bottom, rgb(104, 136, 252, 0.8), rgb(104, 136, 252, 0.1));
+}
+.Header {
+  display: block;
+  width: 100%;
+  color: rgb(104, 136, 252);
+  font-size: 45px;
+  text-align: center;
+  cursor: default;
+  margin: -10px auto 40px auto;
+}
+.FormContainer {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  width: 400px;
+  margin: auto;
+  padding: 60px;
+  height: 400px;
+}
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Form input {
+  outline: 0;
+  background: #f2f2f2;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 300px;
+  display: block;
+  border-radius: 3px;
+  z-index: 10;
+}
+.Form button {
+  text-transform: uppercase;
+  outline: 0;
+  background-color: rgb(104, 136, 252, 0.8);
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+  width: 300px;
+  display: block;
+  border-radius: 3px;
+  transition: transform 600ms ease-out;
+}
+.Form button:hover {
+  background-color: rgb(104, 136, 252);
+}
+.Demo {
+  margin: -40px 0 30px 0;
+  color: rgb(139, 139, 139);
+  font-size: 18px;
+  cursor: default;
+}
+.Demo a {
+  color: rgb(104, 136, 252);
+  text-decoration: none;
+}
+.Message {
+  position: fixed;
+  top: 520px;
+  margin: auto;
+  color: rgb(139, 139, 139);
+  font-size: 15px;
+  cursor: default;
+}
+.Message a {
+  color: rgb(104, 136, 252);
+  text-decoration: none;
+}
+.Remember {
+  margin-top: 15px;
+  transition: transform 600ms ease-out;
+}
+.Remember p {
+  cursor: default;
+  font-size: 15px;
+  color: rgb(139, 139, 139);
+  display: inline;
+}
+.LoginError {
+  cursor: default;
+  position: absolute;
+  top: 290px;
+  z-index: 5;
+  font-size: 14.5px;
+  color: rgb(139, 139, 139);
+  max-width: 298px;
+  transition: transform 600ms ease-out;
+}
+.SignupError {
+  cursor: default;
+  position: absolute;
+  top: 355px;
+  z-index: 5;
+  font-size: 14.5px;
+  color: rgb(139, 139, 139);
+  max-width: 298px;
+  transition: transform 600ms ease-out;
+}
+.Move {
+  transform: translateY(25px);
+}

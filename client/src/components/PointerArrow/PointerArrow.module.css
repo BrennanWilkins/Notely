@@ -1,0 +1,19 @@
+.Arrow {
+  position: absolute;
+  top: 79px;
+  color: rgb(104, 136, 252);
+  transform: rotate(180deg);
+  animation: MoveArrow 1s ease-out infinite;
+}
+.DemoArrow {
+  position: absolute;
+  top: 80px;
+  color: rgb(104, 136, 252);
+  transform: rotate(180deg);
+  animation: MoveArrow 1s ease-out infinite;
+}
+@keyframes MoveArrow {
+  0% { left: 175px; }
+  50% { left: 170px; }
+  100% { left: 175px; }
+}

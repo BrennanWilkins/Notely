@@ -1,0 +1,60 @@
+.PopupDiv > span {
+  font-size: 11px;
+  width: 90px;
+  height: 12px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 5px;
+  position: fixed;
+  left: 250px;
+  transition: visibility 0.2s, left 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PopupDivCollapse > span {
+  font-size: 11px;
+  width: 90px;
+  height: 12px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 5px;
+  position: fixed;
+  left: 65px;
+  transition: visibility 0.2s, left 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ShowPopup {
+  visibility: visible;
+  animation: fadeIn 0.5s;
+}
+.HidePopup {
+  visibility: hidden;
+  animation: fadeOut 0.3s;
+}
+.ShowPopup::before, .HidePopup::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #555;
+  left: -5px;
+  top: 10px;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

@@ -1,0 +1,28 @@
+.Hidden {
+  display: none;
+}
+.Toolbar {
+  border: 0;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+}
+.Toolbar:hover {
+  background-color: rgb(255, 255, 254);
+}
+.TitleEditor {
+  margin: -40px 62px -35px 3px;
+  font-size: 30px;
+  font-weight: 500;
+}
+.BodyEditor {
+  margin-left: 3px;
+  margin-right: 62px;
+  font-size: 16px;
+}
+.ColorPicker {
+  transform: translateX(-50px);
+}
+.Emoji {
+  transform: translateX(-150px);
+}

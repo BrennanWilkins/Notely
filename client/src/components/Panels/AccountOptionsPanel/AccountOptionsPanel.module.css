@@ -1,0 +1,24 @@
+.Panel {
+  position: fixed;
+  z-index: 10;
+  top: 70px;
+  left: 15px;
+  width: 150px;
+  height: 100px;
+  background-color: white;
+  box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+  padding-top: 12px;
+  border-radius: 3px;
+}
+.Panel div {
+  height: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.Panel div:hover {
+  background-color: rgb(173, 172, 180, 0.2);
+}

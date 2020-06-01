@@ -1,0 +1,129 @@
+.Outline {
+  position: fixed;
+  top: 0;
+  left: 240px;
+  width: 340px;
+  height: 100%;
+  background-color: rgb(246, 246, 246);
+  border-right: 1px solid rgb(173, 172, 180, 0.4);
+  transition: all 0.3s;
+  transform: translateX(0%);
+}
+.OutlineClose {
+  transform: translateX(-100%);
+}
+.OutlineCollapse {
+  position: fixed;
+  top: 0;
+  left: 55px;
+  width: 340px;
+  height: 100%;
+  background-color: rgb(246, 246, 246);
+  border-right: 1px solid rgb(173, 172, 180, 0.4);
+  transition: all 0.3s;
+  transform: translateX(0%);
+}
+.OutlineHeader {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+}
+.JournalTitle {
+  cursor: default;
+  margin: 20px;
+  font-size: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.NoteTotal {
+  cursor: default;
+  margin-left: 20px;
+  font-size: 13px;
+  color: rgb(173, 172, 180);
+  font-weight: 330;
+}
+.NotebookNote {
+  height: 125px;
+  border-bottom: 1px solid rgb(173, 172, 180, 0.5);
+  cursor: pointer;
+}
+.NotebookNoteSelected {
+  height: 125px;
+  border-bottom: 1px solid rgb(173, 172, 180, 0.5);
+  cursor: pointer;
+  background-color: rgb(173, 172, 180, 0.2);
+}
+.NotebookNote:hover {
+  background-color: rgb(173, 172, 180, 0.15);
+}
+.NoteTitle {
+  margin: 0 5px 5px 20px;
+  font-weight: 600;
+  font-size: 13px;
+  height: 20px;
+  padding-top: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.NoteBody {
+  margin: 0 5px 15px 20px;
+  font-size: 13px;
+  color: #888;
+  height: 38px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+}
+.NoteDate {
+  color: rgb(173, 172, 180);
+  font-size: 13px;
+  margin: 0 20px 0 20px;
+  font-weight: 330;
+}
+.OutlineContent {
+  height: 508px;
+  overflow-y: auto;
+}
+.OutlineContent::-webkit-scrollbar {
+  width: 10px;
+}
+.OutlineContent::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.OutlineContent::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+.OutlineContent::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+.StarIcon {
+  margin-left: 7px;
+  color: rgb(104, 136, 252, 0.8);
+}
+.EmptyTrashBtn {
+  position: fixed;
+  top: 15px;
+  left: 224px;
+  border: 1px solid rgb(233, 38, 38);
+  border-radius: 3px;
+  height: 38px;
+  width: 86px;
+  color: rgb(233, 38, 38);
+  font-weight: 300;
+  font-size: 12px;
+  cursor: pointer;
+}
+.SearchIcon {
+  margin-right: 10px;
+  display: inline-flex;
+  height: 25px;
+  align-items: center;
+}
+.HighlightText {
+  background-color: rgb(104, 136, 252, 0.4);
+}

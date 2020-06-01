@@ -1,0 +1,62 @@
+.AddNotebook {
+  position: fixed;
+  top: 130px;
+  left: 382px;
+  width: 512px;
+  height: 200px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+  padding-top: 12px;
+}
+.AddNotebookTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(55, 55, 55);
+  margin: auto 20px;
+  padding: 0 5px 10px 10px;
+  border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+}
+.AddNotebookTitle span {
+  float: right;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.AddNotebookTitle span:hover {
+  background-color: rgb(173, 172, 180, 0.5);
+}
+.AddNotebookBtn {
+  border: 0;
+  margin-right: 20px;
+  padding: 5px 13px;
+  font-size: 16px;
+  float: right;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+.AddNotebookBtn:enabled {
+  background-color: rgb(104, 136, 252, 0.6);
+}
+.AddNotebookInput {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 15px 0 0 30px;
+  width: 430px;
+  border: 1px solid rgb(173, 172, 180, 0.5);
+  border-radius: 3px;
+}
+.AddNotebookSubheader {
+  display: block;
+  margin: 10px 0 0 32px;
+  font-size: 14px;
+  font-weight: 450;
+  color: rgb(173, 172, 180);
+}

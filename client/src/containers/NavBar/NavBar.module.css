@@ -1,0 +1,198 @@
+.NavBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 100%;
+  background-color: rgb(27, 26, 31);
+  transition: all 0.3s;
+}
+.NavBarClose {
+  transform: translateX(-100%);
+}
+.NavBarCollapse {
+  transition: all 0.3s;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: rgb(27, 26, 31);
+  width: 55px;
+  z-index: 2;
+}
+.Title {
+  display: flex;
+  align-items: center;
+  padding-left: 17px;
+  padding-top: 10px;
+  width: 100%;
+  height: 5%;
+  font-size: 20px;
+  color: rgb(104, 136, 252);
+  font-weight: bold;
+  cursor: default;
+}
+.UserInfo {
+  width: 216px;
+  margin: auto;
+  margin-top: 5px;
+  height: 31px;
+  color: #eee;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.UserInfo button {
+  background-color: inherit;
+  border: 0;
+  color: rgb(173, 172, 180, 1);
+  display: flex;
+  align-items: center;
+}
+.UserInfo button:hover {
+  color: #eee;
+}
+.UserInfo span {
+  max-width: 182px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+.UserInfo div {
+  display: flex;
+  margin-left: 10px;
+}
+.NavLinks {
+  height: 348px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.NavLinks::-webkit-scrollbar {
+  width: 10px;
+}
+.NavLinks::-webkit-scrollbar-track {
+  background-color: inherit;
+}
+.NavLinks::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+.NavLinks div {
+  width: 100%;
+  margin: 0;
+  color: #eee;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.NavLinks div:hover {
+  background-color: rgb(86, 86, 97, 0.5);
+}
+.NavLinksOuter span {
+  display: flex;
+  align-items: center;
+  margin-right: 7px;
+}
+.NavBarCaret {
+  transition: all 0.2s;
+}
+.NavBarCaretRight {
+  transform: rotate(0deg);
+}
+.NavBarCaretDown {
+  transform: rotate(90deg);
+}
+/* .ShortcutCaret {
+  transition: all 0.2s;
+}
+.ShortcutCaretRight {
+  transform: rotate(0deg);
+}
+.ShortcutCaretDown {
+  transform: rotate(90deg);
+}
+.NotebookCaret {
+  transition: all 0.2s;
+}
+.NotebookCaretRight {
+  transform: rotate(0deg);
+}
+.NotebookCaretDown {
+  transform: rotate(90deg);
+} */
+.NavLinksOuter {
+  font-size: 14px;
+}
+.NavLinksInner {
+  overflow: hidden;
+  max-height: 0;
+  font-size: 13px;
+  transition: max-height 0.4s;
+}
+.InnerIcons {
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+}
+.InnerText {
+  margin-left: 7px;
+  max-width: 170px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.PersonIcon {
+  margin-left: 10px;
+}
+.ContractSearchIcon {
+  color: #eee;
+  background-color: rgb(86, 86, 97);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+.NavLinksCollapse div {
+  cursor: pointer;
+  width: 38px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 17px;
+}
+.NavLinksCollapse div:hover {
+  background-color: rgb(86, 86, 97, 0.5);
+}
+.NavLinksCollapse span {
+  color: #eee;
+}
+.AccountBtn {
+  background-color: inherit;
+  border: 0;
+  color: rgb(173, 172, 180);
+  position: relative;
+  left: -1px;
+  margin: 5px 0 9px 0;
+}
+.AccountBtn:hover {
+  color: #eee;
+}
+.DemoTitle {
+  display: flex;
+  align-items: center;
+  padding-left: 23px;
+  padding-top: 10px;
+  width: 100%;
+  height: 5%;
+  font-size: 20px;
+  color: rgb(104, 136, 252);
+  font-weight: bold;
+  cursor: default;
+}

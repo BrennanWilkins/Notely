@@ -1,0 +1,55 @@
+.RenameNotebook {
+  position: fixed;
+  top: 130px;
+  left: 382px;
+  width: 512px;
+  height: 200px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+  padding-top: 12px;
+}
+.RenameNotebookTitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(55, 55, 55);
+  margin: auto 20px;
+  padding: 0 5px 10px 10px;
+  border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+}
+.RenameNotebookTitle span {
+  float: right;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.RenameNotebookTitle span:hover {
+  background-color: rgb(173, 172, 180, 0.5);
+}
+.RenameNotebookBtn {
+  border: 0;
+  margin-right: 20px;
+  padding: 5px 13px;
+  font-size: 16px;
+  float: right;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+.RenameNotebookBtn:enabled {
+  background-color: rgb(104, 136, 252, 0.6);
+}
+.RenameNotebookInput {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 15px 0 0 30px;
+  width: 430px;
+  border: 1px solid rgb(173, 172, 180, 0.5);
+  border-radius: 3px;
+}

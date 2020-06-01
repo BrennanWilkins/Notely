@@ -1,0 +1,70 @@
+.ShowPanel {
+  position: fixed;
+  top: 0;
+  left: 55px;
+  width: 250px;
+  height: 100%;
+  background-color: rgb(37, 37, 37);
+  color: #eee;
+  z-index: 1;
+  transition: all 0.4s 0.1s ease-out;
+}
+.HidePanel {
+  position: fixed;
+  top: 0;
+  left: 55px;
+  width: 250px;
+  height: 100%;
+  background-color: rgb(37, 37, 37);
+  color: #eee;
+  transition: all 0.4s 0.1s ease-out;
+  z-index: 1;
+  transform: translateX(-200%);
+}
+.NavLinks {
+  position: relative;
+  height: 547px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.NavLinks::-webkit-scrollbar {
+  width: 10px;
+}
+.NavLinks::-webkit-scrollbar-track {
+  background-color: inherit;
+}
+.NavLinks::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+.NavLink {
+  width: 100%;
+  margin: 0;
+  color: #eee;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  padding-left: 20px;
+  z-index: 10;
+}
+.NavLink:hover {
+  background-color: rgb(86, 86, 97, 0.4);
+}
+.Title {
+  margin: 15px;
+  cursor: default;
+}
+.Icon {
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+.Text {
+  margin-left: 7px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}

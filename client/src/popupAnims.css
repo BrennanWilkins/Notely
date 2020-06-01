@@ -1,0 +1,32 @@
+.PanelOpacity-enter {
+  opacity: 0;
+}
+.PanelOpacity-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.PanelOpacity-exit {
+  opacity: 1;
+}
+.PanelOpacity-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.PanelOpen-enter {
+  transform: scale(0.7);
+  opacity: 0;
+}
+.PanelOpen-enter-active {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 200ms;
+}
+.PanelOpen-exit {
+  transform: scale(1);
+  opacity: 1;
+}
+.PanelOpen-exit-active {
+  transform: scale(0);
+  opacity: 0;
+  transition: all 200ms;
+}

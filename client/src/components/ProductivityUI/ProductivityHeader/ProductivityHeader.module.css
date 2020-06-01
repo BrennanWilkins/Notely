@@ -1,0 +1,24 @@
+.DetailHeader {
+  z-index: -1;
+  width: 1280px;
+  height: 105px;
+  border-bottom: 1px solid #eee;
+}
+.HeaderBtns {
+  display: flex;
+  align-items: center;
+}
+.ExpandBtn {
+  height: 25px;
+  width: 25px;
+  margin: 12px;
+  border: 0;
+  border-radius: 2px;
+  display: inline-flex;
+  background-color: #eee;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+.ExpandBtn:hover {
+  background-color: rgb(173, 172, 180, 0.4);
+}

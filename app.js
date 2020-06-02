@@ -20,9 +20,9 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 // add routes to middleware chain
-app.use('/auth', authRouter);
-app.use('/notes', noteRouter);
-app.use('/notebooks', notebookRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/notes', noteRouter);
+app.use('/api/notebooks', notebookRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

@@ -9,7 +9,7 @@ import RenameNotebookPanel from '../components/Panels/RenameNotebookPanel/Rename
 import DeleteNotebookPanel from '../components/Panels/DeleteNotebookPanel/DeleteNotebookPanel';
 import Backdrop from '../components/Backdrop/Backdrop';
 import { ContentState, EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import axios from '../axios';
+import { instance as axios } from '../axios';
 import ErrorPanel from '../components/Panels/ErrorPanel/ErrorPanel';
 import NavBarPopup from '../components/Popups/NavBarPopup/NavBarPopup';
 import NavBarPanel from '../components/Panels/NavBarPanel/NavBarPanel';

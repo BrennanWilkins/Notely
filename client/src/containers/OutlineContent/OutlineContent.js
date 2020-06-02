@@ -203,7 +203,7 @@ class Outline extends React.Component {
             {emptyTrash}
           </div>
           <div className={classes.NoteTotal}>
-            {this.props.notebookCount} notes
+            {this.props.notebookCount} {this.props.notebookCount === 1 ? 'note' : 'notes'}
             {settingsBtn}
             {sortBtn}
           </div>

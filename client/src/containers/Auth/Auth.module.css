@@ -22,8 +22,8 @@
   flex-direction: column;
   align-items: center;
   background-color: #FFFFFF;
-  width: 400px;
   margin: auto;
+  width: 400px;
   padding: 60px;
   height: 400px;
 }
@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px;
 }
 .Form input {
   outline: 0;
@@ -40,7 +41,7 @@
   padding: 15px;
   box-sizing: border-box;
   font-size: 16px;
-  width: 300px;
+  width: 100%;
   display: block;
   border-radius: 3px;
   z-index: 10;
@@ -54,7 +55,7 @@
   color: #FFFFFF;
   font-size: 16px;
   cursor: pointer;
-  width: 300px;
+  width: 100%;
   display: block;
   border-radius: 3px;
   transition: transform 600ms ease-out;
@@ -72,15 +73,19 @@
   color: rgb(104, 136, 252);
   text-decoration: none;
 }
-.Message {
-  position: fixed;
-  top: 520px;
-  margin: auto;
+.MessageLogin {
+  margin-top: 36px;
   color: rgb(139, 139, 139);
   font-size: 15px;
   cursor: default;
 }
-.Message a {
+.MessageSignup {
+  margin-top: 100px;
+  color: rgb(139, 139, 139);
+  font-size: 15px;
+  cursor: default;
+}
+.MessageLogin a, .MessageSignup a {
   color: rgb(104, 136, 252);
   text-decoration: none;
 }
@@ -96,8 +101,9 @@
 }
 .LoginError {
   cursor: default;
-  position: absolute;
-  top: 290px;
+  position: relative;
+  top: -45px;
+  margin-bottom: -15px;
   z-index: 5;
   font-size: 14.5px;
   color: rgb(139, 139, 139);
@@ -106,14 +112,42 @@
 }
 .SignupError {
   cursor: default;
-  position: absolute;
-  top: 355px;
+  position: relative;
+  top: -45px;
+  margin-bottom: -15px;
   z-index: 5;
   font-size: 14.5px;
   color: rgb(139, 139, 139);
   max-width: 298px;
   transition: transform 600ms ease-out;
 }
+.MoveError {
+  transform: translateY(25px);
+  margin-bottom: -35px;
+}
 .Move {
   transform: translateY(25px);
+}
+
+@media (max-width: 600px) {
+  .FormContainer {
+    width: 300px;
+  }
+}
+@media (max-width: 450px) {
+  .FormContainer {
+    width: 200px;
+  }
+  .MessageSignup {
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .Form {
+    width: 250px;
+  }
+  .LoginError, .SignupError {
+    font-size: 14px;
+  }
 }

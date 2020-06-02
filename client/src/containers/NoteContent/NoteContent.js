@@ -76,13 +76,13 @@ class NoteContent extends React.Component {
 
   render() {
     const expandDetailBtn = this.state.expanded ? contractBtn : expandBtn;
-    const detailContentClass = (
+    const contentClass = (
       this.props.expandShortcut ? (this.state.expanded ? classes.DetailContentExpanded : classes.ShortcutContentContracted) :
       this.props.collapse ? (this.state.expanded ? classes.DetailContentExpanded : classes.DetailContentContractedCollapse) :
       this.state.expanded ? classes.DetailContentExpanded :
       classes.DetailContentContracted
     );
-    const detailHeaderClass = (
+    const containerClass = (
       this.props.expandShortcut ? (this.state.expanded ? classes.DetailExpanded :
         (this.props.collapse ? classes.ShortcutContractedCollapse : classes.ShortcutContracted)) :
       this.props.collapse ? (this.state.expanded ? classes.DetailExpanded : classes.DetailContractedCollapse) :
@@ -92,13 +92,15 @@ class NoteContent extends React.Component {
     // return noteContent without the text editors if notebook is empty or no note is selected
     if (this.props.empty || this.props.currNote === null) {
       return (
-        <div className={detailHeaderClass}>
+        <div className={containerClass}>
           <div className={classes.DetailHeader}>
-            <div className={classes.HeaderBtns}>
-              <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>{expandDetailBtn}</button>
+            <div className={classes.HeaderTopBtns}>
+              <div className={classes.HeaderTopLeftBtns}>
+                <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>{expandDetailBtn}</button>
+              </div>
             </div>
           </div>
-          <div className={detailContentClass}></div>
+          <div className={contentClass}></div>
           <div ref={optionPanel => { this.optionPanel = optionPanel; }}></div>
         </div>
       );
@@ -110,7 +112,7 @@ class NoteContent extends React.Component {
       delete={this.deleteTrashHandler} ref={optionPanel => { this.optionPanel = optionPanel; }}/>
       ) : (
       <OptionPanel show={this.state.showOptionsPanel} moveTo={this.moveToHandler} delete={this.deleteNoteHandler}
-      duplicate={this.duplicateNoteHandler} toggleShortcut={this.props.toggleShortcutHandler} shortcutText={shortcutText}
+      duplicate={this.duplicateNoteHandler} toggleShortcut={this.props.toggleShortcut} shortcutText={shortcutText}
       ref={optionPanel => { this.optionPanel = optionPanel; }}/>
     );
     const notebookIcon1 = this.props.onTrash ? trashIcon : notebookIcon;
@@ -129,31 +131,35 @@ class NoteContent extends React.Component {
       <span className={classes.SavedSpan}>{errorCircle}<span>Changes not saved</span></span>
     );
     return (
-      <div className={detailHeaderClass}>
+      <div className={containerClass}>
         <div className={classes.DetailHeader}>
-          <div className={classes.HeaderBtns}>
-            <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>{expandDetailBtn}</button>
-            <button className={classes.NotebookBtn} onClick={this.goToNotebookHandler}>
-              <span className={classes.NotebookIcon}>{notebookIcon1}</span>
-              <span className={classes.NotebookBtnTitle}>{this.props.notebookTitle}</span>
-            </button>
+          <div className={classes.HeaderTopBtns}>
+            <div className={classes.HeaderTopLeftBtns}>
+              <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>{expandDetailBtn}</button>
+              <button className={classes.NotebookBtn} onClick={this.goToNotebookHandler}>
+                <span className={classes.NotebookIcon}>{notebookIcon1}</span>
+                <span className={classes.NotebookBtnTitle}>{this.props.notebookTitle}</span>
+              </button>
+            </div>
+            <button className={classes.OptionsBtn} onClick={this.showOptionsPanel}><span>{threeDots}</span></button>
+          </div>
+          <div className={classes.HeaderBottomBtns}>
             <span className={classes.LastUpdated}>Last edited on {lastUpdated}</span>
             <span className={classes.Saved}>{saved}</span>
-            <button className={classes.OptionsBtn} onClick={this.showOptionsPanel}><span>{threeDots}</span></button>
-            {optionsPanel}
           </div>
+          {optionsPanel}
         </div>
-        <div className={detailContentClass}>
-        <div className={classes.InputFields}>
-          <TextEditor key={String([this.props.currNote.id, this.props.onSearch, this.props.searchValue, 'title'].join(''))}
-          searchValue={this.props.searchValue} readOnly={this.props.onTrash} title={true}
-          textEditorChange={this.props.changeTextEditorHandler} expanded={this.state.expanded}
-          editorState={this.props.currNote.title} onSearch={this.props.onSearch}/>
-          <TextEditor key={String([this.props.currNote.id, this.props.onSearch, this.props.searchValue].join(''))}
-          searchValue={this.props.searchValue} readOnly={this.props.onTrash} title={false}
-          textEditorChange={this.props.changeTextEditorHandler} expanded={this.state.expanded}
-          editorState={this.props.currNote.body} onSearch={this.props.onSearch}/>
-        </div>
+        <div className={contentClass}>
+          <div className={classes.InputFields}>
+            <TextEditor key={String([this.props.currNote.id, this.props.onSearch, this.props.searchValue, 'title'].join(''))}
+            searchValue={this.props.searchValue} readOnly={this.props.onTrash} title={true}
+            textEditorChange={this.props.changeTextEditorHandler} expanded={this.state.expanded}
+            editorState={this.props.currNote.title} onSearch={this.props.onSearch}/>
+            <TextEditor key={String([this.props.currNote.id, this.props.onSearch, this.props.searchValue].join(''))}
+            searchValue={this.props.searchValue} readOnly={this.props.onTrash} title={false}
+            textEditorChange={this.props.changeTextEditorHandler} expanded={this.state.expanded}
+            editorState={this.props.currNote.body} onSearch={this.props.onSearch}/>
+          </div>
         </div>
       </div>
     );

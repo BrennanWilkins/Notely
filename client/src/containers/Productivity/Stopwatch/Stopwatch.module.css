@@ -1,54 +1,3 @@
-.ContentExpanded {
-  width: 1280px;
-  height: 498px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.ContentContracted {
-  width: 1040px;
-  height: 498px;
-  overflow-y: auto;
-}
-.Expanded {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transition: all 0.3s;
-  transform: translateX(0%);
-}
-.Collapsed {
-  position: fixed;
-  top: 0;
-  left: 55px;
-  width: 100%;
-}
-.Contracted {
-  position: fixed;
-  top: 0;
-  left: 240px;
-  width: 100%;
-}
-.Contracted h1 {
-  color: rgb(104, 136, 252);
-  text-align: center;
-  margin-right: 240px;
-  position: relative;
-  top: -20px;
-}
-.Expanded h1 {
-  color: rgb(104, 136, 252);
-  text-align: center;
-  position: relative;
-  top: -20px;
-}
-.Collapsed h1 {
-  color: rgb(104, 136, 252);
-  text-align: center;
-  margin-right: 55px;
-  position: relative;
-  top: -20px;
-}
 .LapList {
   width: 100%;
   display: flex;
@@ -57,14 +6,10 @@
   align-items: center;
 }
 .Stopwatch {
-  height: auto;
   margin: auto;
   margin-top: 50px;
   padding-left: 10px;
   width: 500px;
-}
-.Collapsed .Stopwatch {
-  margin-right: 175px;
 }
 .Lap {
   width: 50%;

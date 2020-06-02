@@ -3,7 +3,7 @@
   left: 0;
   top: 0;
   width: 240px;
-  height: 100%;
+  height: 100vh;
   background-color: rgb(27, 26, 31);
   transition: all 0.3s;
 }
@@ -24,6 +24,18 @@
   display: flex;
   align-items: center;
   padding-left: 17px;
+  padding-top: 10px;
+  width: 100%;
+  height: 5%;
+  font-size: 20px;
+  color: rgb(104, 136, 252);
+  font-weight: bold;
+  cursor: default;
+}
+.DemoTitle {
+  display: flex;
+  align-items: center;
+  padding-left: 23px;
   padding-top: 10px;
   width: 100%;
   height: 5%;
@@ -65,9 +77,9 @@
   margin-left: 10px;
 }
 .NavLinks {
-  height: 348px;
   overflow-y: auto;
   overflow-x: hidden;
+  height: calc(100% - 262px);
 }
 .NavLinks::-webkit-scrollbar {
   width: 10px;
@@ -105,24 +117,6 @@
 .NavBarCaretDown {
   transform: rotate(90deg);
 }
-/* .ShortcutCaret {
-  transition: all 0.2s;
-}
-.ShortcutCaretRight {
-  transform: rotate(0deg);
-}
-.ShortcutCaretDown {
-  transform: rotate(90deg);
-}
-.NotebookCaret {
-  transition: all 0.2s;
-}
-.NotebookCaretRight {
-  transform: rotate(0deg);
-}
-.NotebookCaretDown {
-  transform: rotate(90deg);
-} */
 .NavLinksOuter {
   font-size: 14px;
 }
@@ -184,15 +178,17 @@
 .AccountBtn:hover {
   color: #eee;
 }
-.DemoTitle {
-  display: flex;
-  align-items: center;
-  padding-left: 23px;
-  padding-top: 10px;
-  width: 100%;
-  height: 5%;
-  font-size: 20px;
-  color: rgb(104, 136, 252);
-  font-weight: bold;
-  cursor: default;
+@media (max-width: 600px) {
+  .NavBar {
+    width: 200px;
+  }
+  .InnerText {
+    max-width: 130px;
+  }
+  .UserInfo {
+    width: 176px;
+  }
+  .UserInfo span {
+    max-width: 142px;
+  }
 }

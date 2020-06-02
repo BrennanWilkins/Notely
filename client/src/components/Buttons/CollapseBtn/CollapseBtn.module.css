@@ -1,6 +1,6 @@
 .ExpandBtn {
   position: absolute;
-  top: 575px;
+  bottom: 10px;
   left: 216px;
   background-color: rgb(86, 86, 97, 0.5);
   color: #ddd;
@@ -19,7 +19,7 @@
 }
 .CollapseBtn {
   position: absolute;
-  top: 575px;
+  bottom: 10px;
   left: 31px;
   background-color: rgb(86, 86, 97, 0.5);
   color: #ddd;
@@ -31,4 +31,9 @@
 }
 .ExpandBtn:hover, .CollapseBtn:hover {
   color: white;
+}
+@media (max-width: 600px) {
+  .ExpandBtn {
+    left: 176px;
+  }
 }

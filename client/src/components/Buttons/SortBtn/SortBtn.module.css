@@ -53,3 +53,11 @@
   from { opacity: 1; }
   to { opacity: 0; }
 }
+@media (max-width: 600px) {
+  .SortBtn {
+    left: 160px;
+  }
+  .SortPopup {
+    left: 133px;
+  }
+}

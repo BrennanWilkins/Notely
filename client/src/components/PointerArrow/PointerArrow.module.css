@@ -17,3 +17,13 @@
   50% { left: 170px; }
   100% { left: 175px; }
 }
+@keyframes MoveArrowClose {
+  0% { left: 170px; }
+  50% { left: 165px; }
+  100% { left: 170px; }
+}
+@media (max-width: 600px) {
+  .DemoArrow, .Arrow {
+    animation: MoveArrowClose 1s ease-out infinite;
+  }
+}

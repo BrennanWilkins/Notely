@@ -31,6 +31,7 @@
 .JournalTitle {
   cursor: default;
   margin: 20px;
+  height: 27px;
   font-size: 20px;
   overflow: hidden;
   white-space: nowrap;
@@ -42,6 +43,8 @@
   font-size: 13px;
   color: rgb(173, 172, 180);
   font-weight: 330;
+  max-width: 120px;
+  overflow: hidden;
 }
 .NotebookNote {
   height: 125px;
@@ -106,7 +109,7 @@
   color: rgb(104, 136, 252, 0.8);
 }
 .EmptyTrashBtn {
-  position: fixed;
+  position: absolute;
   top: 15px;
   left: 224px;
   border: 1px solid rgb(233, 38, 38);
@@ -126,4 +129,21 @@
 }
 .HighlightText {
   background-color: rgb(104, 136, 252, 0.4);
+}
+@media (max-width: 600px) {
+  .Outline {
+    width: 200px;
+    left: 200px;
+  }
+  .OutlineCollapse {
+    width: 200px;
+  }
+  .JournalTitle {
+    font-size: 15px;
+  }
+  .EmptyTrashBtn {
+    left: 100px;
+    height: 30px;
+    width: 85px;
+  }
 }

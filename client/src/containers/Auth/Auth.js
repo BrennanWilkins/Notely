@@ -158,13 +158,12 @@ class Auth extends Component {
           onChange={this.changeLoginInfo}/>
           <input type="password" placeholder="Password" name="password" value={this.state.loginInfo.password}
           onChange={this.changeLoginInfo}/>
-          <p className={this.state.error ? [classes.LoginError, classes.Move].join(' ') : classes.LoginError}>
+          <p className={this.state.error ? [classes.LoginError, classes.MoveError].join(' ') : classes.LoginError}>
             {this.state.errorMsg}
           </p>
           <button className={this.state.error ? classes.Move: undefined}>{this.props.login ? 'login' : 'create'}</button>
         </form>
         {rememberDiv}
-        <p className={classes.Message}>Not registered? <Link to="/signup" onClick={this.clearFields}>Create an account</Link></p>
       </React.Fragment>
     ) : (
       <React.Fragment>
@@ -175,14 +174,18 @@ class Auth extends Component {
           onChange={this.changeSignupInfo}/>
           <input type="password" placeholder="Confirm Password" name="confirmPassword" value={this.state.signupInfo.confirmPassword}
           onChange={this.changeSignupInfo}/>
-          <p className={this.state.error ? [classes.SignupError, classes.Move].join(' ') : classes.SignupError}>
+          <p className={this.state.error ? [classes.SignupError, classes.MoveError].join(' ') : classes.SignupError}>
             {this.state.errorMsg}
           </p>
           <button className={this.state.error ? classes.Move: undefined}>{this.props.login ? 'login' : 'create'}</button>
         </form>
         {rememberDiv}
-        <p className={classes.Message}>Already registered? <Link to="/login" onClick={this.clearFields}>Login</Link></p>
       </React.Fragment>
+    );
+    const message = this.props.login ? (
+      <p className={classes.MessageSignup}>Not registered? <Link to="/signup" onClick={this.clearFields}>Create an account</Link></p>
+    ) : (
+      <p className={classes.MessageLogin}>Already registered? <Link to="/login" onClick={this.clearFields}>Login</Link></p>
     );
     return (
       <div className={classes.Container}>
@@ -191,6 +194,7 @@ class Auth extends Component {
           <h1 className={classes.Header}>Notely</h1>
           {form}
           {this.state.loading && <Spinner />}
+          {message}
         </div>
       </div>
     );

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import classes from './Timer.module.css';
 import TimeDisplay from '../../../components/ProductivityUI/TimeDisplay/TimeDisplay';
 import TimeControlBtns from '../../../components/ProductivityUI/TimeControlBtns/TimeControlBtns';
-import ProductivityHeader from '../../../components/ProductivityUI/ProductivityHeader/ProductivityHeader';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index';
+import Wrapper from '../../../components/ProductivityUI/Wrapper/Wrapper';
 
 class Timer extends Component {
   state = {
@@ -18,8 +18,6 @@ class Timer extends Component {
   }
 
   render() {
-    const contentClass = this.state.expanded ? classes.ContentExpanded : classes.ContentContracted;
-    const headerClass = this.state.expanded ? classes.Expanded : this.props.collapse ? classes.Collapsed : classes.Contracted;
     // shows input fields to set timer if timer not started, if started shows TimeDisplay
     const inputFields = this.props.firstStart ? null : (
       <div className={classes.TimerDropdown}>
@@ -35,17 +33,15 @@ class Timer extends Component {
       </div>
     );
     return (
-      <div className={headerClass}>
-        <ProductivityHeader expanded={this.state.expanded} expand={this.expandDetailHandler} title="Timer" />
-        <div className={contentClass}>
-          <div className={classes.Timer}>
-            {inputFields}
-            {this.props.firstStart ? <TimeDisplay time={this.props.displayTime} /> : null}
-            <TimeControlBtns reset={this.props.onResetTimer} start={this.props.onStartTimer} resetText="Cancel"
-            startText={this.props.started ? 'Stop' : 'Start'} />
-          </div>
+      <Wrapper expanded={this.state.expanded} expand={this.expandDetailHandler} title="Timer"
+      collapse={this.props.collapse}>
+        <div className={classes.Timer}>
+          {inputFields}
+          {this.props.firstStart ? <TimeDisplay time={this.props.displayTime} /> : null}
+          <TimeControlBtns reset={this.props.onResetTimer} start={this.props.onStartTimer} resetText="Cancel"
+          startText={this.props.started ? 'Stop' : 'Start'} />
         </div>
-      </div>
+      </Wrapper>
     );
   }
 }

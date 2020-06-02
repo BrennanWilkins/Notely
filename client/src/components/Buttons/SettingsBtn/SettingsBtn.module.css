@@ -60,3 +60,11 @@
   from { opacity: 1; }
   to { opacity: 0; }
 }
+@media (max-width: 600px) {
+  .SettingsBtn {
+    left: 135px;
+  }
+  .SettingsPopup {
+    left: 108px;
+  }
+}

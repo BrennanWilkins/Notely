@@ -2,19 +2,25 @@
   position: fixed;
   top: 0;
   left: 581px;
-  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  width: calc(100% - 581px);
 }
 .ShortcutContracted {
   position: fixed;
   top: 0;
   left: 240px;
-  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  width: calc(100% - 240px);
 }
 .ShortcutContractedCollapse {
   position: fixed;
   top: 0;
   left: 55px;
-  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  width: calc(100% - 55px);
 }
 .DetailExpanded {
   position: fixed;
@@ -23,17 +29,21 @@
   width: 100%;
   transition: all 0.3s;
   transform: translateX(0%);
+  height: 100%;
+  min-width: 500px;
 }
 .DetailContractedCollapse {
   position: fixed;
   top: 0;
   left: 396px;
-  width: 100%;
+  height: 100%;
+  width: calc(100% - 396px);
+  min-width: 500px;
 }
 .DetailContentContractedCollapse {
-  width: 884px;
-  height: 498px;
   overflow-y: auto;
+  height: calc(100% - 105px);
+  width: 100%;
 }
 .DetailHeader {
   z-index: -1;
@@ -42,20 +52,20 @@
   border-bottom: 1px solid #eee;
 }
 .ShortcutContentContracted {
-  width: 1040px;
-  height: 498px;
   overflow-y: auto;
+  height: calc(100% - 105px);
+  width: 100%;
 }
 .DetailContentContracted {
-  width: 699px;
-  height: 498px;
   overflow-y: auto;
+  height: calc(100% - 105px);
+  width: 100%;
 }
 .DetailContentExpanded {
   width: 100%;
-  height: 498px;
   overflow-y: auto;
   overflow-x: hidden;
+  height: calc(100% - 105px);
 }
 .InputFields {
   margin: 55px 0px 0px 40px;
@@ -70,6 +80,7 @@
   background-color: #eee;
   cursor: pointer;
   transition: 0.3s ease-out;
+  align-items: center;
 }
 .ExpandBtn:hover {
   background-color: rgb(173, 172, 180, 0.4);
@@ -100,14 +111,22 @@
 .NotebookBtn:hover {
   background-color: rgb(173, 172, 180, 0.4);
 }
-.HeaderBtns {
+.HeaderTopBtns {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.HeaderTopLeftBtns {
+  display: inline-flex;
+  align-items: center;
+}
+.HeaderBottomBtns {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .OptionsBtn {
-  position: fixed;
-  top: 10px;
-  left: 1240px;
   padding-top: 3px;
   height: 30px;
   width: 25px;
@@ -119,51 +138,24 @@
   color: #555;
   cursor: pointer;
   transition: 0.3s ease-out;
+  margin-right: 15px;
 }
 .OptionsBtn:hover {
   background-color: rgb(173, 172, 180, 0.4);
 }
-.OptionsPanel {
-  position: fixed;
-  z-index: 10;
-  top: 50px;
-  left: 1115px;
-  width: 150px;
-  height: 200px;
-  background-color: white;
-  box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
-  padding-top: 12px;
-  border-radius: 3px;
-}
-.OptionsPanel div {
-  height: 30px;
-  font-size: 14px;
-  font-weight: 500;
-  padding-left: 12px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-.OptionsPanel div:hover {
-  background-color: rgb(173, 172, 180, 0.2);
-}
 .LastUpdated {
-  position: absolute;
-  top: 75px;
-  left: 25px;
   cursor: default;
   font-size: 13px;
   color: rgb(173, 172, 180);
   font-weight: 330;
+  margin-left: 20px;
 }
 .Saved {
-  position: fixed;
-  top: 77px;
-  left: 1135px;
   cursor: default;
   font-size: 13px;
   color: rgb(173, 172, 180);
   font-weight: 330;
+  margin-right: 25px;
 }
 .SavedSpan {
   display: flex;
@@ -172,4 +164,18 @@
 .SavedSpan span {
   margin-bottom: 1px;
   margin-left: 4px;
+}
+@media (max-width: 600px) {
+  .DetailContracted {
+    left: 400px;
+    width: calc(100% - 400px);
+  }
+  .ShortcutContracted {
+    left: 200px;
+    width: calc(100% - 200px);
+  }
+  .DetailContractedCollapse {
+    left: 256px;
+    width: calc(100% - 256px);
+  }
 }

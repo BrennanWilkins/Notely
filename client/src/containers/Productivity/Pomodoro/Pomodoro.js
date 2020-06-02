@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import classes from './Pomodoro.module.css';
 import TimeDisplay from '../../../components/ProductivityUI/TimeDisplay/TimeDisplay';
 import TimeControlBtns from '../../../components/ProductivityUI/TimeControlBtns/TimeControlBtns';
-import ProductivityHeader from '../../../components/ProductivityUI/ProductivityHeader/ProductivityHeader';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index';
+import Wrapper from '../../../components/ProductivityUI/Wrapper/Wrapper';
 
 class Pomodoro extends Component {
   state = {
@@ -18,25 +18,21 @@ class Pomodoro extends Component {
   }
 
   render() {
-    const contentClass = this.state.expanded ? classes.ContentExpanded : classes.ContentContracted;
-    const headerClass = this.state.expanded ? classes.Expanded : this.props.collapse ? classes.Collapsed : classes.Contracted;
     return (
-      <div className={headerClass}>
-        <ProductivityHeader expanded={this.state.expanded} expand={this.expandDetailHandler} title="Pomodoro Timer" />
-        <div className={contentClass}>
-          <div className={classes.Pomodoro}>
-            <div className={classes.PomodoroBtns}>
-              <button onClick={this.props.onChangePomodoro.bind(this, 25)}>Pomodoro</button>
-              <button onClick={this.props.onChangePomodoro.bind(this, 5)}>Short Break</button>
-              <button onClick={this.props.onChangePomodoro.bind(this, 15)}>Long Break</button>
-            </div>
-            <TimeDisplay time={this.props.displayTime} />
-            <TimeControlBtns reset={this.props.onResetPomodoro} start={this.props.onStartPomodoro}
-            resetText="Reset" startText={this.props.started ? 'Stop' : 'Start'} />
-            <h2>Pomodoros Finished: {this.props.pomodoroCount}</h2>
+      <Wrapper expanded={this.state.expanded} title="Pomodoro Timer" collapse={this.props.collapse}
+      expand={this.expandDetailHandler}>
+        <div className={classes.Pomodoro}>
+          <div className={classes.PomodoroBtns}>
+            <button onClick={this.props.onChangePomodoro.bind(this, 25)}>Pomodoro</button>
+            <button onClick={this.props.onChangePomodoro.bind(this, 5)}>Short Break</button>
+            <button onClick={this.props.onChangePomodoro.bind(this, 15)}>Long Break</button>
           </div>
+          <TimeDisplay time={this.props.displayTime} />
+          <TimeControlBtns reset={this.props.onResetPomodoro} start={this.props.onStartPomodoro}
+          resetText="Reset" startText={this.props.started ? 'Stop' : 'Start'} />
+          <h2>Pomodoros Finished: {this.props.pomodoroCount}</h2>
         </div>
-      </div>
+      </Wrapper>
     );
   }
 }

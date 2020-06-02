@@ -30,3 +30,8 @@
 .SortPanel div:hover {
   background-color: rgb(173, 172, 180, 0.2);
 }
+@media (max-width: 600px) {
+  .SortPanel {
+    left: 120px;
+  }
+}

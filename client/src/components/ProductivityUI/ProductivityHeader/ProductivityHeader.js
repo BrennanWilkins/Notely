@@ -6,10 +6,10 @@ const ProductivityHeader = props => {
   const expandDetailBtn = props.expanded ? contractBtn : expandBtn;
   return (
     <div className={classes.DetailHeader}>
-      <div className={classes.HeaderBtns}>
+      <div className={classes.HeaderBtn}>
         <button className={classes.ExpandBtn} onClick={props.expand}>{expandDetailBtn}</button>
       </div>
-      <h1>{props.title}</h1>
+      <div className={classes.Title}><h1>{props.title}</h1></div>
     </div>
   );
 };

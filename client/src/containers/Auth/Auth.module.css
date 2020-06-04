@@ -2,11 +2,8 @@
   position: absolute;
   z-index: 0;
   height: 100vh;
-  min-height: 420px;
   width: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: rgb(104, 136, 252, 0.5);
   background-image: linear-gradient(to bottom, rgb(104, 136, 252, 0.8), rgb(104, 136, 252, 0.1));
 }
@@ -62,7 +59,6 @@
   display: block;
   border-radius: 3px;
   transition: transform 600ms ease-out;
-  height: 48.9px;
 }
 .Form button:hover {
   background-color: rgb(104, 136, 252);
@@ -103,18 +99,7 @@
   color: rgb(139, 139, 139);
   display: inline;
 }
-.LoginError {
-  cursor: default;
-  position: relative;
-  top: -45px;
-  margin-bottom: -15px;
-  z-index: 5;
-  font-size: 14.5px;
-  color: rgb(139, 139, 139);
-  max-width: 298px;
-  transition: transform 600ms ease-out;
-}
-.SignupError {
+.ErrorMsg {
   cursor: default;
   position: relative;
   top: -45px;
@@ -151,7 +136,7 @@
   .Form {
     width: 250px;
   }
-  .LoginError, .SignupError {
+  .ErrorMsg {
     font-size: 14px;
   }
 }

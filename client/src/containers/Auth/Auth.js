@@ -160,7 +160,7 @@ class Auth extends Component {
           onChange={this.changeLoginInfo}/>
           <input type="password" placeholder="Password" name="password" value={this.state.loginInfo.password}
           onChange={this.changeLoginInfo}/>
-          <p className={this.state.error ? [classes.LoginError, classes.MoveError].join(' ') : classes.LoginError}>
+          <p className={this.state.error ? [classes.ErrorMsg, classes.MoveError].join(' ') : classes.ErrorMsg}>
             {this.state.errorMsg}
           </p>
           <button className={this.state.error ? classes.Move: undefined}>{this.props.login ? 'login' : 'create'}</button>
@@ -176,7 +176,7 @@ class Auth extends Component {
           onChange={this.changeSignupInfo}/>
           <input type="password" placeholder="Confirm Password" name="confirmPassword" value={this.state.signupInfo.confirmPassword}
           onChange={this.changeSignupInfo}/>
-          <p className={this.state.error ? [classes.SignupError, classes.MoveError].join(' ') : classes.SignupError}>
+          <p className={this.state.error ? [classes.ErrorMsg, classes.MoveError].join(' ') : classes.ErrorMsg}>
             {this.state.errorMsg}
           </p>
           <button className={this.state.error ? classes.Move: undefined}>{this.props.login ? 'login' : 'create'}</button>

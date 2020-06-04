@@ -1,24 +1,21 @@
 import React from 'react';
 import { xIcon } from '../../UIIcons';
-import '../../../popupAnims.css';
 import classes from './DeleteNotePanel.module.css';
-import { CSSTransition } from 'react-transition-group';
+import Panel from '../../PanelContainer/PanelContainer';
 
 const DeleteNotePanel = (props) => (
-  <CSSTransition in={props.show} timeout={400} classNames="PanelOpen" mountOnEnter unmountOnExit>
-    <div className={classes.DeleteNotePanel}>
-      <div className={classes.DeleteNotePanelTitle}>
-        Delete note
-        <span onClick={props.close}>{xIcon}</span>
-        <button onClick={props.confirm} className={classes.DeleteNoteBtn}>Delete</button>
-      </div>
-      <div className={classes.DeleteNoteBody}>
-        <span>The note "</span>
-        <span className={classes.DeleteNoteBodyTitle}>{props.title}</span>
-        <span>" will be moved to trash.</span>
-      </div>
+  <Panel show={props.show} height="150px">
+    <div className={classes.DeleteNotePanelTitle}>
+      Delete note
+      <span onClick={props.close}>{xIcon}</span>
+      <button onClick={props.confirm} className={classes.DeleteNoteBtn}>Delete</button>
     </div>
-  </CSSTransition>
+    <div className={classes.DeleteNoteBody}>
+      <span>The note "</span>
+      <span className={classes.DeleteNoteBodyTitle}>{props.title}</span>
+      <span>" will be moved to trash.</span>
+    </div>
+  </Panel>
 );
 
 export default DeleteNotePanel;

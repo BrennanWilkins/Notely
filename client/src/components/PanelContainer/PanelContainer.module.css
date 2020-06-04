@@ -1,0 +1,15 @@
+.Panel {
+  position: fixed;
+  top: 150px;
+  left: calc(50% - 256px);
+  width: 512px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+  padding-top: 12px;
+}
+@media (max-width: 600px) {
+  .Panel {
+    left: 150px;
+  }
+}

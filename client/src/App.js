@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import pomodoroReducer from './containers/Productivity/store/reducers/pomodoro';
 import timerReducer from './containers/Productivity/store/reducers/timer';
 import stopwatchReducer from './containers/Productivity/store/reducers/stopwatch';
+import { instance } from './axios';
 const Notely = React.lazy(() => import('./containers/Notely'));
 
 const rootReducer = combineReducers({
@@ -26,8 +27,7 @@ class App extends Component {
 
   handleWindowClose = () => {
     // if remember me not chosen, log user out when window closes
-    const remember = localStorage['remember'];
-    if (remember === 'false') {
+    if (localStorage['remember'] === 'false') {
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
       localStorage.removeItem('remember');
@@ -50,6 +50,7 @@ class App extends Component {
     const userId = localStorage['userId'];
     // if ls contains both token & userId, user is authenticated
     if (token && userId) {
+      instance.defaults.headers.common['x-auth-token'] = token;
       this.setState({ isAuth: true });
     }
   }

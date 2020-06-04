@@ -1,12 +1,5 @@
 .Arrow {
   position: absolute;
-  top: 79px;
-  color: rgb(104, 136, 252);
-  transform: rotate(180deg);
-  animation: MoveArrow 1s ease-out infinite;
-}
-.DemoArrow {
-  position: absolute;
   top: 80px;
   color: rgb(104, 136, 252);
   transform: rotate(180deg);
@@ -23,7 +16,7 @@
   100% { left: 170px; }
 }
 @media (max-width: 600px) {
-  .DemoArrow, .Arrow {
+  .Arrow {
     animation: MoveArrowClose 1s ease-out infinite;
   }
 }

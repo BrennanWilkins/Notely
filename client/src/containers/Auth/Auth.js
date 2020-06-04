@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './Auth.module.css';
 import Spinner from '../../components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
-import { authInstance as axios } from '../../axios';
+import { authInstance as axios, instance } from '../../axios';
 
 class Auth extends Component {
   state = {
@@ -66,8 +66,9 @@ class Auth extends Component {
     const userData = { email: this.state.loginInfo.email, password: this.state.loginInfo.password };
     // send login request to server
     axios.post('login', userData).then(res => {
-      if (res.data.message === 'Success.') {
+      if (res.status === 200) {
         localStorage.setItem('token', res.data.token);
+        instance.defaults.headers.common['x-auth-token'] = res.data.token;
         localStorage.setItem('userId', res.data.userId);
         localStorage.setItem('remember', this.state.remember);
         localStorage.setItem('email', this.state.loginInfo.email);
@@ -90,12 +91,13 @@ class Auth extends Component {
     confirmPassword: this.state.signupInfo.confirmPassword };
     // send signup request to server
     axios.post('signup', userData).then(res => {
-      if (res.data.message === 'Success.') {
+      if (res.status === 200) {
         const newUserData = { email: this.state.signupInfo.email, password: this.state.signupInfo.password };
         // if signup was successful then try to automatically log user in
         axios.post('login', newUserData).then(resp => {
-          if (resp.data.message === 'Success.') {
+          if (resp.status === 200) {
             localStorage.setItem('token', resp.data.token);
+            instance.defaults.headers.common['x-auth-token'] = resp.data.token;
             localStorage.setItem('userId', resp.data.userId);
             localStorage.setItem('remember', this.state.remember);
             localStorage.setItem('email', this.state.signupInfo.email);

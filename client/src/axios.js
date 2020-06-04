@@ -9,6 +9,3 @@ export const authInstance = axios.create({
   // baseURL: 'http://localhost:9000/api/auth/'
   baseURL: 'https://notely-app.herokuapp.com/api/auth/'
 });
-
-// set the jwt token header for all requests
-instance.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');

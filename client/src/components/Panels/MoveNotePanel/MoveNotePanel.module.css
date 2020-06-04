@@ -1,13 +1,18 @@
 .MoveToPanel {
   position: fixed;
   top: 40px;
-  left: 320px;
+  left: calc(50% - 320px);
   width: 640px;
   height: 500px;
   border-radius: 3px;
   background-color: white;
   box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
   padding-top: 12px;
+}
+@media (max-width: 650px) {
+  .MoveToPanel {
+    left: 150px;
+  }
 }
 .MoveToPanelTitle {
   font-size: 20px;

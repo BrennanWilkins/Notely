@@ -7,15 +7,6 @@
   background-color: rgb(104, 136, 252, 0.5);
   background-image: linear-gradient(to bottom, rgb(104, 136, 252, 0.8), rgb(104, 136, 252, 0.1));
 }
-.Header {
-  display: block;
-  width: 100%;
-  color: rgb(104, 136, 252);
-  font-size: 45px;
-  text-align: center;
-  cursor: default;
-  margin: -10px auto 40px auto;
-}
 .FormContainer {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   display: flex;
@@ -26,6 +17,15 @@
   width: 400px;
   padding: 60px;
   height: 400px;
+}
+.Header {
+  display: block;
+  width: 100%;
+  color: rgb(104, 136, 252);
+  font-size: 45px;
+  text-align: center;
+  cursor: default;
+  margin: -10px auto 40px auto;
 }
 .Form {
   display: flex;
@@ -59,6 +59,7 @@
   display: block;
   border-radius: 3px;
   transition: transform 600ms ease-out;
+  height: 48.9px;
 }
 .Form button:hover {
   background-color: rgb(104, 136, 252);

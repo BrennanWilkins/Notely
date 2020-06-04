@@ -21,3 +21,9 @@
 .OptionsPanel div:hover {
   background-color: rgb(173, 172, 180, 0.2);
 }
+@media (max-width: 450px) {
+  .OptionsPanel {
+    right: 5px;
+    top: 45px;
+  }
+}

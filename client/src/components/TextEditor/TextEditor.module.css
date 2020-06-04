@@ -5,23 +5,14 @@
   border: 0;
   position: absolute;
   top: 60px;
-  left: -25px;
-  transform: scale(0.9);
+  left: 5px;
   z-index: 100;
-}
-@media (max-width: 1150px) {
-  .Toolbar {
-    left: -53px;
-    width: 585px;
-    transform: scale(0.8);
-    z-index: 100;
-  }
 }
 .Toolbar:hover {
   background-color: rgb(255, 255, 254);
 }
 .TitleEditor {
-  margin: -40px 40px -35px 3px;
+  margin: -40px 0px -35px 1px;
   font-size: 30px;
   font-weight: 500;
   overflow-x: hidden;
@@ -29,8 +20,24 @@
 .BodyEditor {
   overflow-x: hidden;
   margin-left: 3px;
-  margin-right: 40px;
   font-size: 16px;
+}
+@media (max-width: 750px) {
+  .TitleEditor {
+    font-size: 24px;
+  }
+  .BodyEditor {
+    font-size: 13px;
+  }
+}
+@media (max-width: 500px) {
+  .TitleEditor {
+    font-size: 18px;
+    margin-bottom: -25px;
+  }
+  .BodyEditor {
+    font-size: 12px;
+  }
 }
 .ColorPicker {
   transform: translateX(-50px);

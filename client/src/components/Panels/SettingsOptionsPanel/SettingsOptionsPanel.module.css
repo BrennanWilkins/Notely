@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 10;
   top: 95px;
-  left: 195px;
+  left: 260px;
   width: 180px;
   height: 150px;
   background-color: white;
@@ -22,8 +22,23 @@
 .SettingsPanel div:hover {
   background-color: rgb(173, 172, 180, 0.2);
 }
+@media (max-width: 1024px) {
+  .SettingsPanel {
+    left: 160px;
+  }
+}
+@media (max-width: 850px) {
+  .SettingsPanel {
+    left: 135px;
+  }
+}
 @media (max-width: 600px) {
   .SettingsPanel {
-    left: 100px;
+    left: 75px;
+  }
+}
+@media (max-width: 450px) {
+  .SettingsPanel {
+    left: 45px;
   }
 }

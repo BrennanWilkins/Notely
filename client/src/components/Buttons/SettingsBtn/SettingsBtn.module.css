@@ -60,11 +60,35 @@
   from { opacity: 1; }
   to { opacity: 0; }
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+  .SettingsBtn {
+    left: 160px;
+  }
+  .SettingsPopup {
+    left: 133px;
+  }
+}
+@media (max-width: 850px) {
   .SettingsBtn {
     left: 135px;
   }
   .SettingsPopup {
     left: 108px;
+  }
+}
+@media (max-width: 600px) {
+  .SettingsBtn {
+    left: 75px;
+  }
+  .SettingsPopup {
+    left: 48px;
+  }
+}
+@media (max-width: 450px) {
+  .SettingsBtn {
+    left: 45px;
+  }
+  .SettingsPopup {
+    left: 18px;
   }
 }

@@ -74,7 +74,7 @@
   margin: 0 5px 15px 20px;
   font-size: 13px;
   color: #888;
-  height: 38px;
+  max-height: 38px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -130,7 +130,20 @@
 .HighlightText {
   background-color: rgb(104, 136, 252, 0.4);
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+  .Outline, .OutlineCollapse {
+    width: 240px;
+  }
+  .JournalTitle {
+    font-size: 18px;
+  }
+  .EmptyTrashBtn {
+    left: 124px;
+    height: 30px;
+    width: 85px;
+  }
+}
+@media (max-width: 850px) {
   .Outline {
     width: 200px;
     left: 200px;
@@ -140,10 +153,74 @@
   }
   .JournalTitle {
     font-size: 15px;
+    margin-left: 17px;
   }
   .EmptyTrashBtn {
     left: 100px;
     height: 30px;
     width: 85px;
+  }
+  .NoteBody, .NoteTitle, .NoteDate {
+    font-size: 12px;
+  }
+}
+@media (max-width: 750px) {
+  .Outline {
+    position: fixed;
+    top: 0;
+    left: 55px;
+    width: 200px;
+    height: 100%;
+    background-color: rgb(246, 246, 246);
+    border-right: 1px solid rgb(173, 172, 180, 0.4);
+    transition: all 0.3s;
+    transform: translateX(0%);
+    z-index: -1;
+  }
+}
+@media (max-width: 600px) {
+  .Outline, .OutlineCollapse {
+    width: 140px;
+  }
+  .NoteBody, .NoteTitle, .NoteDate {
+    font-size: 10.5px;
+    margin-left: 10px;
+  }
+  .JournalTitle {
+    font-size: 13px;
+    margin-left: 10px;
+  }
+  .NoteTotal {
+    margin-left: 10px;
+  }
+  .NotebookNote, .NotebookNoteSelected {
+    height: 105px;
+  }
+  .EmptyTrashBtn {
+    left: 55px;
+    width: 65px;
+    font-size: 9px;
+  }
+}
+@media (max-width: 450px) {
+  .Outline, .OutlineCollapse {
+    width: 90px;
+  }
+  .NoteBody, .NoteTitle {
+    font-size: 10px;
+    margin-left: 5px;
+    margin-right: 2px;
+  }
+  .JournalTitle {
+    font-size: 11px;
+    margin-left: 7px;
+  }
+  .NoteTotal {
+    font-size: 11px;
+  }
+  .NoteDate {
+    margin: 0;
+    font-size: 10px;
+    margin-left: 5px;
   }
 }

@@ -32,8 +32,13 @@
 .ExpandBtn:hover, .CollapseBtn:hover {
   color: white;
 }
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .ExpandBtn {
     left: 176px;
+  }
+}
+@media (max-width: 500px) {
+  .ExpandBtn {
+    left: 171px;
   }
 }

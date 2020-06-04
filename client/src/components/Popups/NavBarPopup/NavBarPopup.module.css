@@ -58,8 +58,13 @@
   from { opacity: 1; }
   to { opacity: 0; }
 }
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .PopupDiv > span {
     left: 210px;
+  }
+}
+@media (max-width: 500px) {
+  .PopupDiv > span {
+    left: 205px;
   }
 }

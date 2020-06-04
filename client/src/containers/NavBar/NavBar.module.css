@@ -3,7 +3,7 @@
   left: 0;
   top: 0;
   width: 240px;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(27, 26, 31);
   transition: all 0.3s;
 }
@@ -178,7 +178,7 @@
 .AccountBtn:hover {
   color: #eee;
 }
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .NavBar {
     width: 200px;
   }
@@ -190,5 +190,10 @@
   }
   .UserInfo span {
     max-width: 142px;
+  }
+}
+@media (max-width: 500px) {
+  .NavBar {
+    width: 195px;
   }
 }

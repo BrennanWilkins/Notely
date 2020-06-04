@@ -53,11 +53,36 @@
   from { opacity: 1; }
   to { opacity: 0; }
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+  .SortBtn {
+    left: 190px;
+  }
+  .SortPopup {
+    left: 163px;
+  }
+}
+@media (max-width: 850px) {
   .SortBtn {
     left: 160px;
   }
   .SortPopup {
     left: 133px;
+  }
+}
+@media (max-width: 600px) {
+  .SortBtn {
+    left: 100px;
+  }
+  .SortPopup {
+    left: 73px;
+  }
+}
+@media (max-width: 450px) {
+  .SortBtn {
+    top: 68px;
+    left: 65px;
+  }
+  .SortPopup {
+    left: 37px;
   }
 }

@@ -3,7 +3,6 @@
   top: 0;
   left: 581px;
   height: 100%;
-  min-width: 500px;
   width: calc(100% - 581px);
 }
 .ShortcutContracted {
@@ -11,7 +10,6 @@
   top: 0;
   left: 240px;
   height: 100%;
-  min-width: 500px;
   width: calc(100% - 240px);
 }
 .ShortcutContractedCollapse {
@@ -19,7 +17,6 @@
   top: 0;
   left: 55px;
   height: 100%;
-  min-width: 500px;
   width: calc(100% - 55px);
 }
 .DetailExpanded {
@@ -30,7 +27,6 @@
   transition: all 0.3s;
   transform: translateX(0%);
   height: 100%;
-  min-width: 500px;
 }
 .DetailContractedCollapse {
   position: fixed;
@@ -38,7 +34,6 @@
   left: 396px;
   height: 100%;
   width: calc(100% - 396px);
-  min-width: 500px;
 }
 .DetailContentContractedCollapse {
   overflow-y: auto;
@@ -68,7 +63,7 @@
   height: calc(100% - 105px);
 }
 .InputFields {
-  margin: 55px 0px 0px 40px;
+  margin: 55px 30px 0px 30px;
 }
 .ExpandBtn {
   height: 25px;
@@ -165,7 +160,17 @@
   margin-bottom: 1px;
   margin-left: 4px;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+  .DetailContracted {
+    left: 481px;
+    width: calc(100% - 481px);
+  }
+  .DetailContractedCollapse {
+    left: 296px;
+    width: calc(100% - 296px);
+  }
+}
+@media (max-width: 850px) {
   .DetailContracted {
     left: 400px;
     width: calc(100% - 400px);
@@ -177,5 +182,100 @@
   .DetailContractedCollapse {
     left: 256px;
     width: calc(100% - 256px);
+  }
+}
+@media (max-width: 750px) {
+  .InputFields {
+    margin: 40px 25px 0px 25px;
+  }
+  .DetailContracted {
+    left: 256px;
+    width: calc(100% - 256px);
+  }
+  .ShortcutContracted {
+    left: 55px;
+    width: calc(100% - 55px);
+    z-index: -1;
+  }
+  .DetailContractedCollapse {
+    left: 256px;
+    width: calc(100% - 256px);
+  }
+  .LastUpdated, .Saved {
+    font-size: 12px;
+  }
+  .HeaderBottomBtns {
+    margin-top: 30px;
+  }
+}
+@media (max-width: 600px) {
+  .InputFields {
+    margin: 40px 15px 0 15px;
+  }
+  .DetailContracted {
+    left: 196px;
+    width: calc(100% - 196px);
+  }
+  .DetailContractedCollapse {
+    left: 196px;
+    width: calc(100% - 196px);
+  }
+  .LastUpdated, .Saved {
+    font-size: 10.5px;
+  }
+}
+@media (max-width: 500px) {
+  .InputFields {
+    margin: 30px 10px 0 10px;
+  }
+  .LastUpdated {
+    font-size: 10px;
+    margin-left: 10px;
+  }
+  .Saved {
+    font-size: 10px;
+  }
+}
+@media (max-width: 450px) {
+  .HeaderBottomBtns {
+    margin-top: 0;
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .LastUpdated {
+    margin-left: 12px;
+  }
+  .Saved {
+    margin-left: 12px;
+    margin-top: 15px;
+  }
+  .ExpandBtn {
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+  }
+  .NotebookBtn {
+    padding: 3px;
+    max-width: 150px;
+    margin-left: -5px;
+    margin-right: 5px;
+  }
+  .NotebookIcon {
+    position: relative;
+    top: 3px;
+    left: 0;
+  }
+  .NotebookBtnTitle {
+    font-size: 10px;
+  }
+  .OptionsBtn {
+    margin-right: 5px;
+  }
+}
+@media (max-width: 450px) {
+  .DetailContracted, .DetailContractedCollapse {
+    left: 146px;
+    width: calc(100% - 146px);
+    z-index: -1;
   }
 }

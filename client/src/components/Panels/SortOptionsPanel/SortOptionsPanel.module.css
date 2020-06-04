@@ -1,7 +1,7 @@
 .SortPanel {
   position: fixed;
   top: 95px;
-  left: 220px;
+  left: 290px;
   width: 300px;
   height: 230px;
   border-radius: 3px;
@@ -30,8 +30,31 @@
 .SortPanel div:hover {
   background-color: rgb(173, 172, 180, 0.2);
 }
+@media (max-width: 1024px) {
+  .SortPanel {
+    left: 190px;
+  }
+}
+@media (max-width: 850px) {
+  .SortPanel {
+    left: 160px;
+  }
+}
 @media (max-width: 600px) {
   .SortPanel {
-    left: 120px;
+    left: 100px;
+  }
+}
+@media (max-width: 450px) {
+  .SortPanel {
+    left: 65px;
+    width: 250px;
+  }
+  .SortPanel div {
+    font-size: 12px;
+    padding-left: 20px;
+  }
+  .SortPanelTitle {
+    padding-left: 20px;
   }
 }

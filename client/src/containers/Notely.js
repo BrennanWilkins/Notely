@@ -58,6 +58,9 @@ class Notely extends Component {
   }
 
   componentDidMount() {
+    if (window.innerWidth < 750) {
+      this.setState({ showNavBar: false });
+    }
     if (this.props.demo) {
       // if in demo mode, preload example data
       const titleState = EditorState.createWithContent(ContentState.createFromText('Example Note'));
@@ -436,7 +439,8 @@ class Notely extends Component {
     // create new note w duplicated title/body in draft js format
     let noteTitle = (EditorState.createWithContent(convertFromRaw(JSON.parse(currNote.title)))).getCurrentContent().getPlainText();
     noteTitle += '(Copy)';
-    const newTitle = JSON.stringify(convertToRaw(EditorState.createWithContent(ContentState.createFromText(noteTitle)).getCurrentContent()));
+    let newTitle = convertToRaw(EditorState.createWithContent(ContentState.createFromText(noteTitle)).getCurrentContent());
+    newTitle = JSON.stringify(newTitle);
     currNote.title = newTitle;
     currNote.favorite = false;
     currNote.trash = false;
@@ -884,7 +888,7 @@ class Notely extends Component {
       if (prevState.showNavBar) {
         return { showNavBar: !prevState.showNavBar, popupText: 'Expand Sidebar' };
       }
-      return { showNavBar: !prevState.showNavBar };
+      return { showNavBar: !prevState.showNavBar, popupText: 'Collapse Sidebar' };
     });
   }
 

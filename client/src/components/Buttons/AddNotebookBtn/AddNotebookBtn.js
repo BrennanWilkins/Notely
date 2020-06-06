@@ -10,7 +10,7 @@ const AddNotebookBtn = props => (
       {notebookIcon}
       <span className={classes.AddNotebookPlus}>{plusSign}</span>
     </span>
-    {props.collapse ? null : <span>New notebook</span>}
+    {props.collapse ? null : <span className={classes.NotebookText}>New notebook</span>}
   </div>
 );
 

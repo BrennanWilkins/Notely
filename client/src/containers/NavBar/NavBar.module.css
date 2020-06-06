@@ -142,16 +142,22 @@
   margin-left: 10px;
 }
 .ContractSearchIcon {
-  color: #eee;
-  background-color: rgb(86, 86, 97);
-  width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+.ContractSearchIcon span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
   border-radius: 15px;
-  margin-left: 12px;
   cursor: pointer;
+  color: #eee;
+  background-color: rgb(86, 86, 97);
 }
 .NavLinksCollapse div {
   cursor: pointer;

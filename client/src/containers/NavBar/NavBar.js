@@ -146,9 +146,11 @@ class NavBar extends Component {
         <div className={navTitleClass}></div>
         {accountNav}
         <AddNotebookBtn addNotebook={this.props.addNotebook} collapse showPopup={this.props.showPopup} hidePopup={this.props.hidePopup}/>
-        <div className={classes.ContractSearchIcon} onMouseLeave={this.props.hidePopup} onClick={this.expandHandler}
-        onMouseEnter={this.props.showPopup.bind(this, 'Search')}>
-          {searchIcon}
+        <div className={classes.ContractSearchIcon}>
+          <span onMouseLeave={this.props.hidePopup} onClick={this.expandHandler}
+          onMouseEnter={this.props.showPopup.bind(this, 'Search')}>
+            {searchIcon}
+          </span>
         </div>
         <NewNoteBtn collapse newNote={this.props.newNote} showPopup={this.props.showPopup} hidePopup={this.props.hidePopup}/>
         <div className={classes.NavLinksCollapse}>

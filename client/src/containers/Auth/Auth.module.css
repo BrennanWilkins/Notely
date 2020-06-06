@@ -114,8 +114,9 @@
   margin-bottom: -15px;
   z-index: 5;
   font-size: 14px;
+  text-align: center;
   color: rgb(139, 139, 139);
-  max-width: 298px;
+  max-width: 300px;
   transition: transform 600ms ease-out;
 }
 .MoveError {

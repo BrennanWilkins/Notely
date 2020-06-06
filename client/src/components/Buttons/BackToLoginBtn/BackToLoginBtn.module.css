@@ -1,5 +1,4 @@
 .Button {
-  /* margin: 10px 0 8px 17.5px; */
   background-color: inherit;
   color: #eee;
   border: 0;
@@ -8,7 +7,6 @@
   display: flex;
   align-items: center;
   padding: 2px 7px;
-
   margin: 10px 0 8px 15px;
 }
 .Button:hover, .ButtonCollapse:hover {
@@ -21,7 +19,6 @@
   text-decoration: none;
 }
 .ButtonCollapse {
-  /* margin: 10px 0 8px 12px; */
   background-color: inherit;
   color: #eee;
   border: 0;
@@ -31,8 +28,6 @@
   font-size: 15px;
   display: flex;
   align-items: center;
-  /* padding: 2px 7px; */
-
   justify-content: center;
 }
 .LinkCollapse .BtnSpan {

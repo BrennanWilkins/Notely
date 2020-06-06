@@ -3,10 +3,10 @@
   height: 70px;
   display: flex;
   align-items: center;
-  /* margin-left: 15px; */
+  margin-left: 20px;
 }
 .Btn .PlusBtn {
-  margin-left: 15px;
+  /* margin-left: 15px; */
 }
 .PlusBtn {
   font-size: 14px;
@@ -16,7 +16,9 @@
   align-items: center;
   color: #eee;
   cursor: pointer;
-  justify-content: center;
+  /* justify-content: center; */
+
+  padding: 0;
 }
 .PlusBtn span {
   height: 30px;

@@ -161,17 +161,18 @@
 }
 .NavLinksCollapse div {
   cursor: pointer;
-  width: 38px;
-  height: 30px;
   display: flex;
-  align-items: center;
-  padding-left: 17px;
+  width: 100%;
+  justify-content: center;
 }
 .NavLinksCollapse div:hover {
   background-color: rgb(86, 86, 97, 0.5);
 }
 .NavLinksCollapse span {
   color: #eee;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }
 .AccountBtn {
   background-color: inherit;

@@ -29,6 +29,10 @@
   background-color: #eee;
   cursor: pointer;
   transition: 0.3s ease-out;
+  font-size: 13px;
+}
+.ExpandBtn span {
+  display: flex;
 }
 .ExpandBtn:hover {
   background-color: rgb(173, 172, 180, 0.4);

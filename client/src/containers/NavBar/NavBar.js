@@ -70,6 +70,7 @@ class NavBar extends Component {
   // remove outside click listener before unmounting
   componentWillUnmount() {
     document.removeEventListener('click', this.handleSettingsOutsideClick, false);
+    document.removeEventListener('click', this.handleNavBarOutsideClick, false);
   }
 
   // expands nav bar
@@ -91,7 +92,28 @@ class NavBar extends Component {
     this.props.hidePopup();
   }
 
+  showNavBarHandler = () => {
+    // wait 100ms before checking again
+    setTimeout(() => {
+      if (window.innerWidth < 751 && !this.props.collapse) {
+        console.log(1);
+        document.addEventListener('click', this.handleNavBarOutsideClick, false);
+      }
+    }, 100);
+  }
+
+  // if nav bar clicked then return else close the nav bar on outside click
+  handleNavBarOutsideClick = (e) => {
+    if (this.navBar.contains(e.target)) { return; }
+    document.removeEventListener('click', this.handleNavBarOutsideClick, false);
+    this.collapseHandler();
+  }
+
   render() {
+    // if viewport width < 751px & navbar is open then add outside click event listener
+    if (window.innerWidth < 751 && !this.props.collapse) {
+      this.showNavBarHandler();
+    }
     const shortcutCaretClass = this.state.showShortcuts ? classes.NavBarCaretDown : classes.NavBarCaretRight;
     const notebookCaretClass = this.state.showNotebooks ? classes.NavBarCaretDown : classes.NavBarCaretRight;
     const productivityCaretClass = this.state.showProductivity ? classes.NavBarCaretDown : classes.NavBarCaretRight;
@@ -218,7 +240,7 @@ class NavBar extends Component {
       </React.Fragment>
     );
     return (
-      <div className={navClass}>
+      <div className={navClass} ref={navBar => { this.navBar = navBar; }}>
         {content}
         <CollapseBtn setCollapse={this.collapseHandler} showPopup={this.props.showPopup} hidePopup={this.props.hidePopup}
         collapse={this.props.collapse} />

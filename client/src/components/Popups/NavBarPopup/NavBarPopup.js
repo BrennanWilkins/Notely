@@ -7,14 +7,14 @@ const NavBarPopup = props => {
   // set the position of the popup based on which button is being hovered
   const style = (
     props.popupText === 'Collapse Sidebar' || props.popupText === 'Expand Sidebar' ? { bottom: '9px' } :
-    props.popupText === 'All Notes' ? { top: '224px', width: '60px' } :
+    props.popupText === 'All Notes' ? { top: '216px', width: '60px' } :
     props.popupText === 'Account' ? { top: '46px', width: '60px' } :
-    props.popupText === 'New Notebook' ? { top: '85px' } :
-    props.popupText === 'Search' ? { top: '124px', width: '50px' } :
-    props.popupText === 'New Note' ? { top: '171px', width: '60px' } :
-    props.popupText === 'Trash' ? { top: '313px', width: '50px' } :
-    props.popupText === 'Back to login' ? { top: '50px' } :
-    props.popupText === 'Productivity Tools' ? { top: '370px' } :
+    props.popupText === 'New Notebook' ? { top: '75px' } :
+    props.popupText === 'Search' ? { top: '115px', width: '50px' } :
+    props.popupText === 'New Note' ? { top: '165px', width: '60px' } :
+    props.popupText === 'Trash' ? { top: '305px', width: '50px' } :
+    props.popupText === 'Back to login' ? { top: '42px' } :
+    props.popupText === 'Productivity Tools' ? { top: '360px' } :
     null
   );
   return (

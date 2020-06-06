@@ -75,7 +75,6 @@ class NoteContent extends React.Component {
   }
 
   render() {
-    const expandDetailBtn = this.state.expanded ? contractBtn : expandBtn;
     const contentClass = (
       this.props.expandShortcut ? (this.state.expanded ? classes.DetailContentExpanded : classes.ShortcutContentContracted) :
       this.props.collapse ? (this.state.expanded ? classes.DetailContentExpanded : classes.DetailContentContractedCollapse) :
@@ -96,7 +95,9 @@ class NoteContent extends React.Component {
           <div className={classes.DetailHeader}>
             <div className={classes.HeaderTopBtns}>
               <div className={classes.HeaderTopLeftBtns}>
-                <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>{expandDetailBtn}</button>
+                <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>
+                  <span>{this.state.expanded ? contractBtn : expandBtn}</span>
+                </button>
               </div>
             </div>
           </div>
@@ -135,7 +136,9 @@ class NoteContent extends React.Component {
         <div className={classes.DetailHeader}>
           <div className={classes.HeaderTopBtns}>
             <div className={classes.HeaderTopLeftBtns}>
-              <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>{expandDetailBtn}</button>
+              <button className={classes.ExpandBtn} onClick={this.expandDetailHandler}>
+                <span>{this.state.expanded ? contractBtn : expandBtn}</span>
+              </button>
               <button className={classes.NotebookBtn} onClick={this.goToNotebookHandler}>
                 <span className={classes.NotebookIcon}>{notebookIcon1}</span>
                 <span className={classes.NotebookBtnTitle}>{this.props.notebookTitle}</span>

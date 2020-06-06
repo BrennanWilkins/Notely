@@ -176,14 +176,15 @@
   border: 0;
   color: rgb(173, 172, 180);
   width: 100%;
+  margin-top: -2px;
   margin-bottom: 9px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .PersonIcon {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

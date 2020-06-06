@@ -1,8 +1,8 @@
 .Container {
   position: absolute;
   z-index: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +20,7 @@
   height: 75%;
   max-height: 400px;
   overflow: auto;
+  position: relative;
 }
 .Header {
   display: block;
@@ -81,16 +82,16 @@
   font-size: 15px;
   cursor: default;
   margin: 0;
-  position: relative;
-  top: 36px;
+  position: absolute;
+  bottom: 15px;
 }
 .MessageSignup {
   color: rgb(139, 139, 139);
   font-size: 15px;
   cursor: default;
   margin: 0;
-  position: relative;
-  top: 100px;
+  position: absolute;
+  bottom: 15px;
 }
 .MessageLogin a, .MessageSignup a {
   color: rgb(104, 136, 252);
@@ -112,7 +113,7 @@
   top: -45px;
   margin-bottom: -15px;
   z-index: 5;
-  font-size: 14.5px;
+  font-size: 14px;
   color: rgb(139, 139, 139);
   max-width: 298px;
   transition: transform 600ms ease-out;
@@ -135,15 +136,21 @@
     width: 200px;
   }
   .MessageSignup {
-    top: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 40px;
   }
   .Form {
     width: 250px;
   }
   .ErrorMsg {
     font-size: 14px;
+  }
+}
+@media (max-height: 470px) {
+  .MessageSignup, .MessageLogin {
+    position: static;
+    margin-top: 40px;
   }
 }

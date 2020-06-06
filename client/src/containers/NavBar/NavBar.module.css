@@ -188,9 +188,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  left: -1px;
-  z-index: 1000;
 }
 .AccountBtn:hover {
   color: #eee;

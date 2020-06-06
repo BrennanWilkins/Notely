@@ -1,9 +1,12 @@
 .Btn {
-  width: 100%;
+  /* width: 100%; */
   height: 70px;
   display: flex;
   align-items: center;
   margin-left: 15px;
+
+  justify-content: flex-start;
+  width: calc(100% - 15px);
 }
 .PlusBtn {
   font-size: 14px;

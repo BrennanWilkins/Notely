@@ -4,6 +4,8 @@
   height: 100%;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(104, 136, 252, 0.5);
   background-image: linear-gradient(to bottom, rgb(104, 136, 252, 0.8), rgb(104, 136, 252, 0.1));
 }
@@ -13,10 +15,11 @@
   flex-direction: column;
   align-items: center;
   background-color: #FFFFFF;
-  margin: auto;
   width: 400px;
   padding: 60px;
-  height: 400px;
+  height: 75%;
+  max-height: 400px;
+  overflow: auto;
 }
 .Header {
   display: block;
@@ -25,7 +28,7 @@
   font-size: 45px;
   text-align: center;
   cursor: default;
-  margin: -10px auto 40px auto;
+  margin: -10px auto 40px;
 }
 .Form {
   display: flex;
@@ -74,16 +77,20 @@
   text-decoration: none;
 }
 .MessageLogin {
-  margin-top: 36px;
   color: rgb(139, 139, 139);
   font-size: 15px;
   cursor: default;
+  margin: 0;
+  position: relative;
+  top: 36px;
 }
 .MessageSignup {
-  margin-top: 100px;
   color: rgb(139, 139, 139);
   font-size: 15px;
   cursor: default;
+  margin: 0;
+  position: relative;
+  top: 100px;
 }
 .MessageLogin a, .MessageSignup a {
   color: rgb(104, 136, 252);
@@ -128,7 +135,7 @@
     width: 200px;
   }
   .MessageSignup {
-    margin-top: 90px;
+    top: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;

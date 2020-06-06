@@ -86,9 +86,11 @@
 }
 @media (max-width: 450px) {
   .SettingsBtn {
-    left: 45px;
+    left: 47px;
+    width: 15px;
+    height: 17px;
   }
   .SettingsPopup {
-    left: 18px;
+    left: 17.5px;
   }
 }

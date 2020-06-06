@@ -96,7 +96,6 @@ class NavBar extends Component {
     // wait 100ms before checking again
     setTimeout(() => {
       if (window.innerWidth < 751 && !this.props.collapse) {
-        console.log(1);
         document.addEventListener('click', this.handleNavBarOutsideClick, false);
       }
     }, 100);

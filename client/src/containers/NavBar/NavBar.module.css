@@ -138,9 +138,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.PersonIcon {
-  margin-left: 10px;
-}
 .ContractSearchIcon {
   height: 30px;
   display: flex;
@@ -178,9 +175,15 @@
   background-color: inherit;
   border: 0;
   color: rgb(173, 172, 180);
+  width: 100%;
+  margin-bottom: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PersonIcon {
   position: relative;
   left: -1px;
-  margin: 5px 0 9px 0;
 }
 .AccountBtn:hover {
   color: #eee;

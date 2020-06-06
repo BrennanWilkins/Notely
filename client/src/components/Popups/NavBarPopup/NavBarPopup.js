@@ -8,7 +8,7 @@ const NavBarPopup = props => {
   const style = (
     props.popupText === 'Collapse Sidebar' || props.popupText === 'Expand Sidebar' ? { bottom: '9px' } :
     props.popupText === 'All Notes' ? { top: '216px', width: '60px' } :
-    props.popupText === 'Account' ? { top: '46px', width: '60px' } :
+    props.popupText === 'Account' ? { top: '40px', width: '60px' } :
     props.popupText === 'New Notebook' ? { top: '75px' } :
     props.popupText === 'Search' ? { top: '115px', width: '50px' } :
     props.popupText === 'New Note' ? { top: '165px', width: '60px' } :

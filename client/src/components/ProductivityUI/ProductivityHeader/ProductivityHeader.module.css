@@ -30,6 +30,7 @@
   cursor: pointer;
   transition: 0.3s ease-out;
   font-size: 13px;
+  justify-content: center;
 }
 .ExpandBtn span {
   display: flex;

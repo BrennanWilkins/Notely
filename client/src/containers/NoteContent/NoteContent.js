@@ -152,13 +152,14 @@ class NoteContent extends React.Component {
         <div className={contentClass}>
           <div className={classes.InputFields}>
             <TextEditor key={String([this.props.currNote.id, this.props.onSearch, this.props.searchValue, 'title'].join(''))}
-            searchValue={this.props.searchValue} readOnly={this.props.onTrash} title={true}
-            textEditorChange={this.props.changeTextEditorHandler} expanded={this.state.expanded}
+            searchValue={this.props.searchValue} readOnly={this.props.onTrash} title
+            textEditorChange={this.props.changeTextEditorHandler}
             editorState={this.props.currNote.title} onSearch={this.props.onSearch}/>
             <TextEditor key={String([this.props.currNote.id, this.props.onSearch, this.props.searchValue].join(''))}
             searchValue={this.props.searchValue} readOnly={this.props.onTrash} title={false}
-            textEditorChange={this.props.changeTextEditorHandler} expanded={this.state.expanded}
-            editorState={this.props.currNote.body} onSearch={this.props.onSearch}/>
+            textEditorChange={this.props.changeTextEditorHandler}
+            editorState={this.props.currNote.body} onSearch={this.props.onSearch}
+            expanded={this.state.expanded} collapsed={this.props.collapse} shortcut={this.props.expandShortcut}/>
           </div>
         </div>
       </div>

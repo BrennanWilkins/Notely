@@ -4,7 +4,7 @@ import { xIcon } from '../../UIIcons';
 import Panel from '../../PanelContainer/PanelContainer';
 
 const ErrorPanel = props => (
-  <Panel show={props.show} height="70px">
+  <Panel show={props.show}>
     <div className={classes.ErrorPanelTitle}>
       {props.errorMsg}
       <span onClick={props.close}>{xIcon}</span>

@@ -2,12 +2,18 @@
   font-size: 20px;
   font-weight: 500;
   color: rgb(55, 55, 55);
-  margin: auto 20px;
-  padding: 0 5px 10px 10px;
   border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+  margin: 0 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.RenameNotebookTitle div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .RenameNotebookTitle span {
-  float: right;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -19,10 +25,10 @@
 }
 .RenameNotebookBtn {
   border: 0;
+  margin-left: 20px;
   margin-right: 20px;
   padding: 5px 13px;
   font-size: 16px;
-  float: right;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -37,8 +43,36 @@
   padding: 10px;
   font-size: 15px;
   font-weight: 500;
-  margin: 15px 0 0 30px;
   width: 430px;
   border: 1px solid rgb(173, 172, 180, 0.5);
   border-radius: 3px;
+  width: 75%;
+  margin: 20px auto 35px;
+}
+@media (max-width: 686px) {
+  .RenameNotebookTitle {
+    font-size: 18px;
+  }
+}
+@media (max-width: 647px) {
+  .RenameNotebookTitle {
+    font-size: 16px;
+  }
+}
+@media (max-width: 607px) {
+  .RenameNotebookTitle {
+    flex-direction: column;
+    text-align: center;
+  }
+  .RenameNotebookTitle div {
+    margin-top: 10px;
+    justify-content: space-around;
+  }
+  .RenameNotebookBtn {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .RenameNotebookInput {
+    margin-bottom: 15px;
+  }
 }

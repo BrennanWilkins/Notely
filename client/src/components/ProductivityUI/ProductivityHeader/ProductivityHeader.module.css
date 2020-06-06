@@ -33,3 +33,10 @@
 .ExpandBtn:hover {
   background-color: rgb(173, 172, 180, 0.4);
 }
+@media (max-width: 400px) {
+  .Title h1 {
+    z-index: -1;
+    margin-top: 12px;
+    font-size: 25px;
+  }
+}

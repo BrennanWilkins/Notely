@@ -65,13 +65,20 @@ class TextEditor extends Component {
         editorState={this.state.editorState} customDecorators={searchDecorator} />
       );
     } else {
+      const toolbarClass = this.props.shortcut ? classes.ToolbarShortcutted : this.props.expanded ? classes.ToolbarExpanded :
+      this.props.collapsed ? classes.ToolbarCollapsed : classes.Toolbar;
       return (
-        <Editor toolbarClassName={classes.Toolbar} editorClassName={classes.BodyEditor} handleReturn={this.handleReturn}
+        <Editor toolbarClassName={toolbarClass} editorClassName={classes.BodyEditor} handleReturn={this.handleReturn}
         onEditorStateChange={this.onChange} placeholder="Start Here..." editorState={this.state.editorState}
         readOnly={this.props.readOnly} customDecorators={searchDecorator} toolbarOnFocus
-        toolbar={{ options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'emoji'],
-        list: { indent: { className: classes.Hidden }, outdent: { className: classes.Hidden } }, textAlign: { inDropdown: true },
-        inline: { inDropdown: true }, colorPicker: { popupClassName: classes.ColorPicker }, emoji: { popupClassName: classes.Emoji}}}/>
+        toolbar={{
+          options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'emoji'],
+          list: { options: ['unordered', 'ordered'] },
+          textAlign: { inDropdown: true },
+          inline: { inDropdown: true },
+          colorPicker: { popupClassName: classes.ColorPopup },
+          emoji: { popupClassName: classes.EmojiPopup }
+        }}/>
       );
     }
   }

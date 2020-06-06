@@ -1,12 +1,329 @@
-.Hidden {
-  display: none;
-}
-.Toolbar {
+.Toolbar, .ToolbarExpanded, .ToolbarCollapsed, .ToolbarShortcutted {
   border: 0;
   position: absolute;
   top: 60px;
   left: 5px;
   z-index: 100;
+  width: 125%;
+}
+.EmojiPopup, .ColorPopup {
+  width: 150px;
+  transform: translateX(-75%);
+}
+@media (max-width: 1180px) {
+  .Toolbar {
+    transform: scale(0.9);
+    left: -33px;
+    left: 0;
+  }
+}
+@media (max-width: 1115px) {
+  .Toolbar {
+    transform: scale(0.85);
+    left: -45px;
+  }
+}
+@media (max-width: 1090px) {
+  .Toolbar {
+    transform: scale(0.8);
+    left: -60px;
+  }
+}
+@media (max-width: 1060px) {
+  .Toolbar {
+    transform: scale(0.75);
+    left: -85px;
+    top: 65px;
+    width: 150%;
+  }
+}
+@media (max-width: 1024px) {
+  .Toolbar {
+    transform: scale(0.85);
+    left: -55px;
+    top: 60px;
+  }
+}
+@media (max-width: 990px) {
+  .Toolbar {
+    transform: scale(0.8);
+    left: -70px;
+    width: 150%;
+  }
+}
+@media (max-width: 960px) {
+  .Toolbar {
+    transform: scale(0.75);
+    left: -85px;
+    top: 65px;
+  }
+}
+@media (max-width: 925px) {
+  .Toolbar {
+    transform: scale(0.7);
+    left: -95px;
+  }
+}
+@media (max-width: 895px) {
+  .Toolbar {
+    transform: scale(0.65);
+    left: -105px;
+  }
+  .ToolbarCollapsed {
+    transform: scale(0.9);
+    left: -33px;
+  }
+}
+@media (max-width: 875px) {
+  .Toolbar {
+    transform: scale(0.6);
+    left: -150px;
+    width: 200%;
+  }
+}
+@media (max-width: 850px) {
+  .Toolbar {
+    transform: scale(0.7);
+    left: -95px;
+    width: 150%;
+  }
+}
+@media (max-width: 815px) {
+  .Toolbar {
+    transform: scale(0.65);
+    left: -105px;
+  }
+}
+@media (max-width: 790px) {
+  .Toolbar {
+    transform: scale(0.6);
+    left: -140px;
+    width: 200%;
+  }
+  .ToolbarCollapsed {
+    transform: scale(0.85);
+    left: -45px;
+  }
+}
+@media (max-width: 760px) {
+  .Toolbar {
+    left: -145px;
+  }
+  .ToolbarCollapsed {
+    transform: scale(0.8);
+    left: -70px;
+    width: 150%;
+  }
+}
+@media (max-width: 750px) {
+  .Toolbar {
+    transform: scale(0.8);
+    width: 150%;
+    left: -70px;
+  }
+}
+@media (max-width: 730px) {
+  .Toolbar, .ToolbarCollapsed {
+    transform: scale(0.75);
+    left: -85px;
+    top: 65px;
+  }
+}
+@media (max-width: 700px) {
+  .Toolbar, .ToolbarCollapsed {
+    transform: scale(0.7);
+    left: -95px;
+  }
+}
+@media (max-width: 670px) {
+  .Toolbar, .ToolbarCollapsed {
+    transform: scale(0.65);
+    width: 200%;
+    left: -140px;
+  }
+}
+@media (max-width: 655px) {
+  .Toolbar, .ToolbarCollapsed {
+    transform: scale(0.6);
+    left: -155px;
+  }
+  .ToolbarShortcutted {
+    transform: scale(0.9);
+    left: -35px;
+  }
+}
+@media (max-width: 640px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -150px;
+  }
+}
+@media (max-width: 620px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -145px;
+  }
+}
+@media (max-width: 610px) {
+  .Toolbar, .ToolbarCollapsed {
+    transform: scale(0.58);
+    left: -150px;
+  }
+}
+@media (max-width: 600px) {
+  .Toolbar, .ToolbarCollapsed {
+    transform: scale(0.65);
+    left: -140px;
+  }
+  .ToolbarExpanded {
+    transform: scale(0.9);
+    left: -35px;
+  }
+}
+@media (max-width: 590px) {
+  .ToolbarShortcutted {
+    transform: scale(0.85);
+    left: -50px;
+  }
+}
+@media (max-width: 580px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -150px;
+    transform: scale(0.6);
+  }
+}
+@media (max-width: 560px) {
+  .Toolbar, .ToolbarCollapsed {
+    top: 35px;
+    left: -105px;
+    width: 150%;
+  }
+  .Toolbar .ColorPopup, .ToolbarCollapsed .ColorPopup,
+  .Toolbar .EmojiPopup, .ToolbarCollapsed .EmojiPopup {
+    transform: none;
+  }
+  .ToolbarShortcutted {
+    transform: scale(0.8);
+    left: -60px;
+  }
+}
+@media (max-width: 530px) {
+  .ToolbarShortcutted {
+    transform: scale(0.75);
+    left: -85px;
+    width: 150%;
+  }
+}
+@media (max-width: 540px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -100px;
+  }
+  .ToolbarExpanded {
+    transform: scale(0.85);
+    left: -50px;
+  }
+}
+@media (max-width: 520px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -95px;
+  }
+}
+@media (max-width: 500px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -90px;
+  }
+  .ToolbarExpanded {
+    transform: scale(0.8);
+    left: -60px;
+  }
+  .ToolbarShortcutted {
+    transform: scale(0.7);
+    left: -95px;
+  }
+}
+@media (max-width: 480px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -80px;
+  }
+  .ToolbarExpanded {
+    transform: scale(0.75);
+    left: -85px;
+    width: 150%;
+  }
+}
+@media (max-width: 470px) {
+  .ToolbarShortcutted {
+    transform: scale(0.65);
+    left: -105px;
+    top: 65px;
+  }
+}
+@media (max-width: 450px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -90px;
+  }
+  .ToolbarExpanded {
+    transform: scale(0.7);
+    left: -100px;
+  }
+  .ToolbarShortcutted {
+    transform: scale(0.6);
+    left: -145px;
+    width: 200%;
+  }
+}
+@media (max-width: 430px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -85px;
+  }
+}
+@media (max-width: 415px) {
+  .Toolbar, .ToolbarCollapsed {
+    left: -80px;
+  }
+  .ToolbarExpanded {
+    transform: scale(0.65);
+    left: -105px;
+    top: 65px;
+  }
+  .ToolbarShortcutted {
+    top: 35px;
+    width: 150%;
+    left: -100px;
+  }
+}
+@media (max-width: 400px) {
+  .Toolbar, .ToolbarCollapsed {
+    top: 35px;
+    left: -70px;
+  }
+}
+@media (max-width: 390px) {
+  .ToolbarExpanded {
+    transform: scale(0.6);
+    left: -155px;
+    width: 200%;
+  }
+  .ToolbarShortcutted {
+    left: -90px;
+  }
+}
+@media (max-width: 375px) {
+  .Toolbar, .ToolbarCollapsed {
+    top: 20px;
+    left: -80px;
+    width: 175%;
+  }
+  .ToolbarExpanded {
+    left: -150px;
+  }
+}
+@media (max-width: 360px) {
+  .Toolbar, .ToolbarCollapsed, .ToolbarExpanded, .ToolbarShortcutted {
+    top: 20px;
+    height: 90px;
+    overflow-y: auto;
+    left: 0;
+    width: 100%;
+  }
 }
 .Toolbar:hover {
   background-color: rgb(255, 255, 254);
@@ -38,10 +355,4 @@
   .BodyEditor {
     font-size: 12px;
   }
-}
-.ColorPicker {
-  transform: translateX(-50px);
-}
-.Emoji {
-  transform: translateX(-150px);
 }

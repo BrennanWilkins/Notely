@@ -8,8 +8,8 @@
 .Stopwatch {
   margin: auto;
   margin-top: 50px;
-  padding-left: 10px;
   width: 500px;
+  padding: 10px;
 }
 .Lap {
   width: 50%;
@@ -18,4 +18,24 @@
   font-size: 15px;
   margin-bottom: 0;
   border-bottom: 1px solid #eee;
+}
+@media (max-width: 600px) {
+  .Stopwatch {
+    width: 400px;
+  }
+}
+@media (max-width: 500px) {
+  .Stopwatch {
+    width: 300px;
+  }
+}
+@media (max-width: 400px) {
+  .Stopwatch {
+    width: 250px;
+  }
+}
+@media (max-width: 330px) {
+  .Stopwatch {
+    width: 200px;
+  }
 }

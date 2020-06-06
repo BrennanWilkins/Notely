@@ -8,3 +8,25 @@
   margin-bottom: 30px;
   border-radius: 5px;
 }
+@media (max-width: 600px) {
+  .TimeDiv {
+    font-size: 60px;
+  }
+}
+@media (max-width: 500px) {
+  .TimeDiv {
+    font-size: 50px;
+    height: 100px;
+  }
+}
+@media (max-width: 400px) {
+  .TimeDiv {
+    font-size: 45px;
+  }
+}
+@media (max-width: 330px) {
+  .TimeDiv {
+    font-size: 35px;
+    height: 80px;
+  }
+}

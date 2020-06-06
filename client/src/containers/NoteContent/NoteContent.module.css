@@ -89,7 +89,7 @@
   color: #555;
   cursor: pointer;
   transition: 0.3s ease-out;
-  max-width: 200px;
+  max-width: 30vw;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -134,6 +134,8 @@
   cursor: pointer;
   transition: 0.3s ease-out;
   margin-right: 15px;
+  position: absolute;
+  right: 0;
 }
 .OptionsBtn:hover {
   background-color: rgb(173, 172, 180, 0.4);
@@ -215,6 +217,7 @@
   .DetailContracted {
     left: 196px;
     width: calc(100% - 196px);
+    z-index: -1;
   }
   .DetailContractedCollapse {
     left: 196px;
@@ -236,16 +239,23 @@
     font-size: 10px;
   }
 }
+@media (max-width: 475px) {
+  .NotebookBtn {
+    padding: 3px;
+    margin-left: -5px;
+    margin-right: 5px;
+  }
+}
 @media (max-width: 450px) {
-  .HeaderBottomBtns {
+  .DetailContractedCollapse .HeaderBottomBtns, .DetailContracted .HeaderBottomBtns {
     margin-top: 0;
     flex-direction: column;
     align-items: baseline;
   }
-  .LastUpdated {
+  .DetailContractedCollapse .LastUpdated, .DetailContracted .LastUpdated {
     margin-left: 12px;
   }
-  .Saved {
+  .DetailContractedCollapse .Saved, .DetailContracted .Saved {
     margin-left: 12px;
     margin-top: 15px;
   }
@@ -253,12 +263,6 @@
     height: 20px;
     width: 20px;
     margin: 10px;
-  }
-  .NotebookBtn {
-    padding: 3px;
-    max-width: 150px;
-    margin-left: -5px;
-    margin-right: 5px;
   }
   .NotebookIcon {
     position: relative;
@@ -271,8 +275,6 @@
   .OptionsBtn {
     margin-right: 5px;
   }
-}
-@media (max-width: 450px) {
   .DetailContracted, .DetailContractedCollapse {
     left: 146px;
     width: calc(100% - 146px);

@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 55px;
-  width: 250px;
+  width: 50%;
   height: 100%;
   background-color: rgb(37, 37, 37);
   color: #eee;
@@ -13,7 +13,7 @@
   position: fixed;
   top: 0;
   left: 55px;
-  width: 250px;
+  width: 50%;
   height: 100%;
   background-color: rgb(37, 37, 37);
   color: #eee;
@@ -23,7 +23,7 @@
 }
 .NavLinks {
   position: relative;
-  height: 547px;
+  height: calc(80% - 22px);
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -53,6 +53,7 @@
   background-color: rgb(86, 86, 97, 0.4);
 }
 .Title {
+  height: 22px;
   margin: 15px;
   cursor: default;
 }
@@ -66,5 +67,5 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: calc(100% - 55px);
 }

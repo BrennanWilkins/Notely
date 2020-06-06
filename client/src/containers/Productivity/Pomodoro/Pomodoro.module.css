@@ -26,3 +26,39 @@
 .Pomodoro h2 {
   text-align: center;
 }
+@media (max-width: 600px) {
+  .Pomodoro {
+    width: 400px;
+  }
+}
+@media (max-width: 500px) {
+  .Pomodoro {
+    width: 300px;
+  }
+  .PomodoroBtns button {
+    font-size: 12px;
+    width: 120px;
+  }
+  .Pomodoro h2 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 400px) {
+  .Pomodoro {
+    width: 250px;
+  }
+  .PomodoroBtns button {
+    font-size: 11px;
+  }
+  .Pomodoro h2 {
+    font-size: 17px;
+  }
+}
+@media (max-width: 330px) {
+  .Pomodoro {
+    width: 200px;
+  }
+  .Pomodoro h2 {
+    font-size: 14px;
+  }
+}

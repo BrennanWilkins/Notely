@@ -1,33 +1,36 @@
 .MoveToPanel {
   position: fixed;
   top: 40px;
-  left: calc(50% - 320px);
-  width: 640px;
-  height: 500px;
+  left: calc(25%);
+  width: 50%;
+  min-height: 25%;
+  max-height: 75%;
   border-radius: 3px;
   background-color: white;
   box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.25);
   padding-top: 12px;
 }
-@media (max-width: 650px) {
-  .MoveToPanel {
-    left: 150px;
-  }
-}
 .MoveToPanelTitle {
   font-size: 20px;
   font-weight: 500;
   color: rgb(55, 55, 55);
-  margin: auto 20px;
-  padding: 0 5px 10px 10px;
   border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+  margin: 0 15px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.MoveToPanelTitle div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .MoveToBtn {
   border: 0;
+  margin-left: 20px;
   margin-right: 20px;
   padding: 5px 13px;
   font-size: 16px;
-  float: right;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -37,7 +40,6 @@
   background-color: rgb(104, 136, 252, 0.5);
 }
 .MoveToPanelTitle span {
-  float: right;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -47,11 +49,8 @@
   background-color: rgb(173, 172, 180, 0.5);
 }
 .MoveToPanelNotebooks {
-  height: 452px;
-  margin: 0 30px 0 40px;
-  padding-right: 10px;
+  margin: 5px 25px 15px;
   font-size: 17px;
-  margin-top: 5px;
   font-weight: 450;
   overflow-y: auto;
 }
@@ -60,11 +59,14 @@
   align-items: center;
   height: 30px;
   padding-left: 15px;
+  padding-right: 15px;
 }
 .MoveToPanelNotebooksIcon {
   display: inline-flex;
   align-items: center;
   margin-right: 7px;
+  position: relative;
+  top: 1.5px;
 }
 .MoveToPanelNotebooksText {
   overflow: hidden;
@@ -77,4 +79,44 @@
 .ActiveNotebook {
   background-color: rgb(104, 136, 252, 0.2);
   color: rgb(104, 136, 252);
+}
+@media (max-width: 605px) {
+  .MoveToPanelNotebooks {
+    font-size: 16px;
+  }
+  .MoveToPanelTitle {
+    font-size: 19px;
+  }
+}
+@media (max-width: 588px) {
+  .MoveToPanelTitle {
+    font-size: 18px;
+  }
+}
+@media (max-width: 571px) {
+  .MoveToPanelTitle {
+    flex-direction: column;
+    text-align: center;
+  }
+  .MoveToPanelTitle div {
+    margin-top: 10px;
+    justify-content: center;
+  }
+  .MoveToPanelNotebooks {
+    font-size: 14px;
+    margin: 5px 10px 15px;
+  }
+  .MoveToPanelNotebooksText {
+    overflow-x: auto;
+    white-space: nowrap;
+    text-overflow: clip;
+  }
+  .MoveToPanelNotebooks div {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .MoveToBtn {
+    margin-left: 0;
+    margin-right: 20px;
+  }
 }

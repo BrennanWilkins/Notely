@@ -2,12 +2,15 @@
   font-size: 20px;
   font-weight: 500;
   color: rgb(55, 55, 55);
-  margin: auto 20px;
-  padding: 0 5px 10px 10px;
+  margin: 10px 20px 20px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .ErrorPanelTitle span {
-  float: right;
+  margin-left: 5px;
   border-radius: 3px;
   display: flex;
   justify-content: center;

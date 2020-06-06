@@ -18,3 +18,23 @@
 .ControlBtns button:hover {
   background-color: #ddd;
 }
+@media (max-width: 500px) {
+  .ControlBtns {
+    height: 50px;
+  }
+  .ControlBtns button {
+    width: 80px;
+    height: 40px;
+    font-size: 15px;
+  }
+}
+@media (max-width: 330px) {
+  .ControlBtns {
+    height: 40px;
+  }
+  .ControlBtns button {
+    width: 70px;
+    height: 35px;
+    font-size: 14px;
+  }
+}

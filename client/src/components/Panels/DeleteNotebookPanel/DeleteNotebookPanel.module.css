@@ -2,16 +2,23 @@
   font-size: 20px;
   font-weight: 500;
   color: rgb(55, 55, 55);
-  margin: auto 20px;
-  padding: 0 5px 10px 10px;
   border-bottom: 1px solid rgb(173, 172, 180, 0.4);
+  margin: 0 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.DeleteNotebookTitle div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .DeleteNotebookBtn {
   border: 0;
+  margin-left: 20px;
   margin-right: 20px;
   padding: 5px 13px;
   font-size: 16px;
-  float: right;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -22,7 +29,6 @@
   cursor: pointer;
 }
 .DeleteNotebookTitle span {
-  float: right;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -33,16 +39,41 @@
   background-color: rgb(173, 172, 180, 0.5);
 }
 .DeleteNotebookBody {
-  margin: 20px 20px 0 20px;
-  padding: 0 5px 10px 10px;
+  margin: 10px 20px 30px;
+  text-align: center;
+  max-width: calc(100% - 20px);
   font-weight: 350;
 }
 .DeleteNotebookBodyTitle {
   display: inline-block;
   position: relative;
   top: 4px;
-  max-width: 320px;
+  max-width: calc(100% - 20px);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+@media (max-width: 631px) {
+  .DeleteNotebookTitle {
+    font-size: 18px;
+  }
+}
+@media (max-width: 593px) {
+  .DeleteNotebookTitle {
+    font-size: 16px;
+  }
+}
+@media (max-width: 558px) {
+  .DeleteNotebookTitle {
+    flex-direction: column;
+    text-align: center;
+  }
+  .DeleteNotebookTitle div {
+    margin-top: 10px;
+    justify-content: space-around;
+  }
+  .DeleteNotebookBtn {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

@@ -9,9 +9,11 @@ const MoveNotePanel = (props) => (
     <div className={classes.MoveToPanel}>
       <div className={classes.MoveToPanelTitle}>
         Move note to...
-        <span onClick={props.close}>{xIcon}</span>
-        <button onClick={props.confirm} disabled={props.id === null}
-        className={classes.MoveToBtn}>Move</button>
+        <div>
+          <button onClick={props.confirm} disabled={props.id === null}
+          className={classes.MoveToBtn}>Move</button>
+          <span onClick={props.close}>{xIcon}</span>
+        </div>
       </div>
       <div className={classes.MoveToPanelNotebooks}>
         {props.notebooks.map(notebook => {

@@ -231,4 +231,11 @@
     margin-left: 5px;
     text-align: center;
   }
+  .EmptyTrashBtn {
+    left: 35px;
+    top: 12px;
+    width: 52px;
+    padding: 2px;
+    font-size: 8px;
+  }
 }

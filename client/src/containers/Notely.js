@@ -82,7 +82,7 @@ class Notely extends Component {
     }
 
     // if not in demo mode, retrieve notebooks/notes from server
-    axios.get('notebooks/' + this.props.userId).then(res => {
+    axios.get('notebooks/').then(res => {
       if (res.status === 200) {
         // map retrieved notebooks to notebook objects
         const notebooks = res.data.notebooks.map(notebook => {
@@ -99,7 +99,7 @@ class Notely extends Component {
       return this.errorHandler('There was an error retrieving your notebooks.');
     });
 
-    axios.get('notes/' + this.props.userId).then(res => {
+    axios.get('notes/').then(res => {
       if (res.status === 200) {
         // map retrieved notes to note objects
         const resNotes = res.data.notes.map(note => {
@@ -264,7 +264,7 @@ class Notely extends Component {
     }
 
     // if not in demo send new note request to server
-    axios.post('notes', { ...currentNote, userId: this.props.userId }).then(res => {
+    axios.post('notes', { ...currentNote }).then(res => {
         if (res.status === 200) {
           // set new note's id to server generated id
           currentNote.id = res.data.noteId;
@@ -322,7 +322,7 @@ class Notely extends Component {
     }
 
     // if not in demo send request to server
-    axios.put('notes/' + currentNote.id, { ...currentNote, userId: this.props.userId }).then(res => {
+    axios.put('notes/' + currentNote.id, { ...currentNote }).then(res => {
       if (res.status === 200) {
         return this.setState({ currentNote, notes, shortcuts, currentNotebookNotes, showTrash: false });
       }
@@ -374,7 +374,7 @@ class Notely extends Component {
         currentNotebookNotes, selectedNotebookId: null, showMoveTo: false });
     }
     // if not in demo mode then send request to server
-    axios.put('notes/' + currNote.id, { ...currNote, userId: this.props.userId, trash: false }).then(res => {
+    axios.put('notes/' + currNote.id, { ...currNote, trash: false }).then(res => {
       if (res.status === 200) {
         this.resetSort();
         this.resetSearchUI();
@@ -413,7 +413,7 @@ class Notely extends Component {
         currentNotebookNotes, emptyNotebook, currentNote, shortcutExpand: false });
     }
     // if not in demo mode then send server request
-    axios.put('notes/' + oldNote.id, { ...oldNote, trash: true, userId: this.props.userId }).then(res => {
+    axios.put('notes/' + oldNote.id, { ...oldNote, trash: true }).then(res => {
       if (res.status === 200) {
         return this.setState({ trash, showDeletePanel: false, notes, shortcuts,
           currentNotebookNotes, emptyNotebook, currentNote, shortcutExpand: false });
@@ -468,7 +468,7 @@ class Notely extends Component {
       return this.setState({ notes, currentNote: currNote, currentNotebookNotes, shortcutExpand: false });
     }
     // if not in demo mode send server request
-    axios.post('notes', { ...currNote, userId: this.props.userId }).then(res => {
+    axios.post('notes', { ...currNote }).then(res => {
       if (res.status === 200) {
         // set new note's id to server generated id
         currNote.id = res.data.noteId;
@@ -529,7 +529,7 @@ class Notely extends Component {
         changeNotebookText: '', shortcutExpand: false, showTrash: false });
     }
     // if not in demo mode then send server request
-    axios.post('notebooks', { title: notebookTitle, userId: this.props.userId }).then(res => {
+    axios.post('notebooks', { title: notebookTitle }).then(res => {
       if (res.status === 200) {
         // set notebook id to server generated id
         const newNotebook = { title: notebookTitle, id: res.data.notebookId, default: false };
@@ -585,8 +585,7 @@ class Notely extends Component {
         notebooks, showRenameNotebook: false });
     }
     // if not in demo mode send server request
-    axios.put('notebooks/' + currNotebook.id, { title: currNotebook.title, default: currNotebook.default,
-    userId: this.props.userId }).then(res => {
+    axios.put('notebooks/' + currNotebook.id, { title: currNotebook.title, default: currNotebook.default }).then(res => {
       if (res.status === 200) {
         return this.setState({ changeNotebookText: '', currentNotebook: currNotebook,
           notebooks, showRenameNotebook: false });
@@ -649,8 +648,7 @@ class Notely extends Component {
     }
     // if not in demo mode send server request
     // server sets default value to true for currentNotebook & false for all others
-    axios.put('notebooks/setDefault/' + currentNotebook.id, { ...currentNotebook, userId: this.props.userId })
-    .then(res => {
+    axios.put('notebooks/setDefault/' + currentNotebook.id, { ...currentNotebook }).then(res => {
       if (res.status === 200) {
         return this.setState({ defaultNotebook: currentNotebook });
       }
@@ -717,8 +715,7 @@ class Notely extends Component {
       return this.setState({ notes, trash, shortcuts, currentNote: newCurrentNote });
     }
     // if not in demo mode send server request
-    axios.put('notes/' + currentNote.id, { ...currentNote, trash: false, userId: this.props.userId })
-    .then(res => {
+    axios.put('notes/' + currentNote.id, { ...currentNote, trash: false }).then(res => {
       if (res.status === 200) {
         return this.setState({ notes, trash, shortcuts, currentNote: newCurrentNote });
       }
@@ -853,7 +850,7 @@ class Notely extends Component {
       // set all changes saved to saving & increase savedCount by 1
       this.setState({ saved: 'Saving', savedCount: this.state.savedCount + 1 });
       // send server request to update note if user hasnt typed in 2000ms
-      axios.put('notes/' + currNote.id, { ...currNote, userId: this.props.userId }).then(res => {
+      axios.put('notes/' + currNote.id, { ...currNote }).then(res => {
         if (res.status === 200) {
           return this.setState({ saved: 'Saved' });
         }

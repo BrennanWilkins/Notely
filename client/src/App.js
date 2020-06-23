@@ -29,7 +29,6 @@ class App extends Component {
     // if remember me not chosen, log user out when window closes
     if (localStorage['remember'] === 'false') {
       localStorage.removeItem('token');
-      localStorage.removeItem('userId');
       localStorage.removeItem('remember');
       localStorage.removeItem('email');
     }
@@ -37,9 +36,9 @@ class App extends Component {
 
   logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('userId');
     localStorage.removeItem('remember');
     localStorage.removeItem('email');
+    delete instance.defaults.headers.common['x-auth-token'];
     this.setState({ isAuth: false });
   }
 
@@ -47,9 +46,8 @@ class App extends Component {
     // event listener for closing the window
     window.addEventListener('beforeunload', this.handleWindowClose);
     const token = localStorage['token'];
-    const userId = localStorage['userId'];
-    // if ls contains both token & userId, user is authenticated
-    if (token && userId) {
+    // if ls contains token, user is authenticated
+    if (token) {
       instance.defaults.headers.common['x-auth-token'] = token;
       this.setState({ isAuth: true });
     }
@@ -71,7 +69,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" render={() =>
           <Suspense fallback={<Spinner />}>
-            <Notely userId={localStorage['userId']} logout={this.logout} demo={false}/>
+            <Notely logout={this.logout} demo={false}/>
           </Suspense>
         } />
         <Redirect to="/" />

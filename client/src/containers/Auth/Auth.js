@@ -69,7 +69,6 @@ class Auth extends Component {
       if (res.status === 200) {
         localStorage.setItem('token', res.data.token);
         instance.defaults.headers.common['x-auth-token'] = res.data.token;
-        localStorage.setItem('userId', res.data.userId);
         localStorage.setItem('remember', this.state.remember);
         localStorage.setItem('email', this.state.loginInfo.email);
         return this.props.isAuth();
@@ -98,7 +97,6 @@ class Auth extends Component {
           if (resp.status === 200) {
             localStorage.setItem('token', resp.data.token);
             instance.defaults.headers.common['x-auth-token'] = resp.data.token;
-            localStorage.setItem('userId', resp.data.userId);
             localStorage.setItem('remember', this.state.remember);
             localStorage.setItem('email', this.state.signupInfo.email);
             return this.props.isAuth();

@@ -5,11 +5,11 @@ const config = require('config');
 module.exports = (req, res, next) => {
   const reqToken = req.header('x-auth-token');
   if (reqToken) {
-    jwt.verify(reqToken, config.get('AUTH_KEY'), (err, token) => {
+    jwt.verify(reqToken, config.get('AUTH_KEY'), (err, decoded) => {
       if (err) {
-        return res.status(401).json({ msg: 'Token is not valid.', token });
+        return res.status(401).json({ msg: 'Token is not valid.' });
       }
-      req.token = reqToken;
+      req.userId = decoded;
       next();
     });
   } else {

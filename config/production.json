@@ -1,0 +1,4 @@
+{
+  "DB_URL" : "mongodb+srv://brennan123:4nUQlXuL3Q6zTgyX@cluster0-pzbh3.gcp.mongodb.net/NotelyDB?retryWrites=true&w=majority",
+  "AUTH_KEY" : "dhfakjshr92dfh2jdfajkr492fdjahkshdfskj2453534"
+}

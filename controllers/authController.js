@@ -23,7 +23,7 @@ exports.login = [
         if (resp) {
           // success, returns jwt token and user id
           jwt.sign({ user }, config.get('AUTH_KEY'), (err, token) => {
-            return res.status(200).json({ token, userId: user._id, msg: 'Success.' });
+            return res.status(200).json({ token, msg: 'Success.' });
           });
         } else {
           // login failed
@@ -57,8 +57,11 @@ exports.signup = [
         const user = new User({ email: req.body.email, password: hashedPassword });
         user.save(error => {
           if (error) { return res.status(500).json({ msg: 'Failed signing up user.' }); }
-          // user successful signed up
-          return res.status(200).json({ msg: 'Success.' });
+          jwt.sign({ user }, config.get('AUTH_KEY'), (err, token) => {
+            if (err) { return res.status(500).json({ msg: 'Failed signing up user.' }); }
+            // user successful signed up
+            return res.status(200).json({ msg: 'Success.', token });
+          });
         });
       });
     });

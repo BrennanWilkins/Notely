@@ -82,7 +82,7 @@ class Notely extends Component {
     }
 
     // if not in demo mode, retrieve notebooks/notes from server
-    axios.get('notebooks/').then(res => {
+    axios.get('notebooks').then(res => {
       if (res.status === 200) {
         // map retrieved notebooks to notebook objects
         const notebooks = res.data.notebooks.map(notebook => {
@@ -99,7 +99,7 @@ class Notely extends Component {
       return this.errorHandler('There was an error retrieving your notebooks.');
     });
 
-    axios.get('notes/').then(res => {
+    axios.get('notes').then(res => {
       if (res.status === 200) {
         // map retrieved notes to note objects
         const resNotes = res.data.notes.map(note => {

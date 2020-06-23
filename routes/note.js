@@ -4,7 +4,7 @@ const noteController = require('../controllers/noteController');
 const auth = require('../middleware/auth');
 
 // GET request for getting all user notes
-router.get('/:userId', auth, noteController.getNotes);
+router.get('/', auth, noteController.getNotes);
 
 // POST request for creating new note
 router.post('/', auth, noteController.createNote);

@@ -3,7 +3,7 @@ const Note = require('../models/note');
 
 // get all notes
 exports.getNotes = (req, res, next) => {
-  Note.find({ 'userId' : req.userId }).exec((err, notes) => {
+  Note.find({ 'userId': req.userId }).exec((err, notes) => {
     if (err) { return res.status(500).json({ msg: 'Error getting notes from server.' }); }
     // returns list of all notes matching userId
     return res.status(200).json({ msg: 'Success.', notes });

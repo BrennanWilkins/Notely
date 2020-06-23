@@ -4,7 +4,7 @@ const Note = require('../models/note');
 
 // get all notebooks
 exports.getNotebooks = (req, res, next) => {
-  Notebook.find({ 'userId' : req.userId }).exec((err, notebooks) => {
+  Notebook.find({ 'userId': req.userId }).exec((err, notebooks) => {
     if (err) { return res.status(500).json({ msg: 'Error getting notebooks from server.' }); }
     // returns list of all notebooks matching userId
     return res.status(200).json({ msg: 'Success.', notebooks });

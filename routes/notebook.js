@@ -4,7 +4,7 @@ const notebookController = require('../controllers/notebookController');
 const auth = require('../middleware/auth');
 
 // GET request for getting all notebooks
-router.get('/:userId', auth, notebookController.getNotebooks);
+router.get('/', auth, notebookController.getNotebooks);
 
 // POST request for creating new notebook
 router.post('/', auth, notebookController.createNotebook);

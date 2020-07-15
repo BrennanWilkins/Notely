@@ -3,198 +3,127 @@ import classes from './Auth.module.css';
 import Spinner from '../../components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
 import { authInstance as axios, instance } from '../../axios';
+import { validate } from '../../utils/authValidation';
 
 class Auth extends Component {
   state = {
-    loginInfo: { email: '', password: '' },
-    signupInfo: { email: '', password: '', confirmPassword: '' },
-    error: false,
-    errorMsg: '',
+    email: '',
+    pass: '',
+    confirmPass: '',
+    err: false,
+    errMsg: '',
     loading: false,
     remember: false
   }
 
-  // returns true if input fields are invalid else returns false
-  checkValidity = () => {
-    // check if email input is a valid email
-    const emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (this.props.login) {
-      if (this.state.loginInfo.email.length === 0 || this.state.loginInfo.password.length === 0) {
-        this.setState({ error: true, errorMsg: 'Email and password must not be empty.' });
-        return true;
-      } else if (!emailTest.test(this.state.loginInfo.email) || this.state.loginInfo.email.length > 70 ||
-        this.state.loginInfo.password.length > 70) {
-        this.setState({ error: true, errorMsg: 'There is no account for the email you entered.' });
-        return true;
-      }
-    } else {
-      if (!emailTest.test(this.state.signupInfo.email)) {
-        this.setState({ error: true, errorMsg: 'Please enter a valid email address.' });
-        return true;
-      } else if (this.state.signupInfo.email.length === 0 || this.state.signupInfo.password.length === 0) {
-        this.setState({ error: true, errorMsg: 'Email and password must not be empty.' });
-        return true;
-      } else if (this.state.signupInfo.password.length > 70) {
-        this.setState({ error: true, errorMsg: 'Password must be less than 70 characters.'});
-        return true;
-      } else if (this.state.signupInfo.password.length < 7) {
-        this.setState({ error: true, errorMsg: 'Password must be at least 7 characters long.'});
-        return true;
-      } else if (this.state.signupInfo.password !== this.state.signupInfo.confirmPassword) {
-        this.setState({ error: true, errorMsg: 'Confirm password must be equal to password.'});
-        return true;
-      }
-    }
-    return false;
-  }
+  toggleLoading = () => this.setState(prev => ({ loading: !prev.loading, err: false, errMsg: '' }))
 
-  // show the spinner if loading
-  toggleLoading = () => {
-    this.setState(prevState => { return { loading: !prevState.loading, error: false, errorMsg: '' }; });
-  }
+  authFailed = (errMsg) => this.setState({ loading: false, err: true, errMsg })
 
-  authFailed = (errorMsg) => {
-    this.setState({ loading: false, error: true, errorMsg });
-  }
+  emailHandler = e => this.setState({ email: e.target.value, err: false })
 
-  loginHandler = (e) => {
-    e.preventDefault();
-    if (this.state.loading) { return; }
-    // if not valid then return
-    if (this.checkValidity()) { return; }
-    this.toggleLoading();
-    const userData = { email: this.state.loginInfo.email, password: this.state.loginInfo.password };
-    // send login request to server
-    axios.post('login', userData).then(res => {
-      if (res.status === 200) {
-        localStorage.setItem('token', res.data.token);
-        instance.defaults.headers.common['x-auth-token'] = res.data.token;
-        localStorage.setItem('remember', this.state.remember);
-        localStorage.setItem('email', this.state.loginInfo.email);
-        return this.props.isAuth();
-      }
-      // not successful
-      this.authFailed(res.data.message);
-    }).catch(err => {
-      this.authFailed('There was an error logging in.');
-    });
-  }
+  passHandler = e => this.setState({ pass: e.target.value, err: false })
 
-  signupHandler = (e) => {
-    e.preventDefault();
-    if (this.state.loading) { return; }
-    // return if signup form is invalid
-    if (this.checkValidity()) { return; }
-    this.toggleLoading();
-    const userData = { email: this.state.signupInfo.email, password: this.state.signupInfo.password,
-    confirmPassword: this.state.signupInfo.confirmPassword };
-    // send signup request to server
-    axios.post('signup', userData).then(res => {
-      if (res.status === 200) {
-        const newUserData = { email: this.state.signupInfo.email, password: this.state.signupInfo.password };
-        // if signup was successful then try to automatically log user in
-        axios.post('login', newUserData).then(resp => {
-          if (resp.status === 200) {
-            localStorage.setItem('token', resp.data.token);
-            instance.defaults.headers.common['x-auth-token'] = resp.data.token;
-            localStorage.setItem('remember', this.state.remember);
-            localStorage.setItem('email', this.state.signupInfo.email);
-            return this.props.isAuth();
-          }
-          // login not successful
-          return this.authFailed('There was an error signing up.');
-        }).catch(error => {
-          this.authFailed('There was an error signing up.');
-        });
-      }
-      // signup not successful
-      this.authFailed('There was an error signing up.');
-    }).catch(err => {
-      this.authFailed('There was an error signing up.');
-    });
-  }
+  confirmPassHandler = e => this.setState({ confirmPass: e.target.value, err: false })
 
-  changeLoginInfo = (e) => {
-    if (this.state.loading) { return; }
-    const loginInfo = { ...this.state.loginInfo };
-    loginInfo[e.target.name] = e.target.value;
-    this.setState({ loginInfo, error: false, errorMsg: '' });
-  }
-
-  changeSignupInfo = (e) => {
-    if (this.state.loading) { return; }
-    const signupInfo = { ...this.state.signupInfo };
-    signupInfo[e.target.name] = e.target.value;
-    this.setState({ signupInfo, error: false, errorMsg: '' });
-  }
+  toggleRemember = () => this.setState(prev => ({ remember: !prev.remember }))
 
   clearFields = () => {
     this.setState({
-      loginInfo: { email: '', password: '' },
-      signupInfo: { email: '', password: '', confirmPassword: '' },
+      email: '',
+      pass: '',
+      confirmPass: '',
       loading: false,
-      error: false,
-      errorMsg: '',
+      err: false,
+      errMsg: '',
       remember: false
     });
   }
 
-  // called when remember me button clicked
-  toggleRemember = () => {
-    this.setState(prevState => { return { remember: !prevState.remember }; });
+  loginHandler = async (e) => {
+    e.preventDefault();
+    // return if already trying to login
+    if (this.state.loading) { return; }
+    // return if login form is invalid
+    const validity = validate('login', this.state.email, this.state.pass);
+    if (validity !== '') { return this.authFailed(validity); }
+    // show spinner if loading
+    this.toggleLoading();
+    const userData = { email: this.state.email, password: this.state.pass,
+      remember: this.state.remember };
+    try {
+      const res = await axios.post('login', userData);
+      this.successHandler(res, userData);
+    } catch(err) {
+      if (err.response) { return this.authFailed(err.response.data.msg); }
+      this.authFailed('There was an error logging in.');
+    }
+  }
+
+  signupHandler = async (e) => {
+    e.preventDefault();
+    if (this.state.loading) { return; }
+    // return if signup form is invalid
+    const validity = validate('signup', this.state.email, this.state.pass, this.state.confirmPass);
+    if (validity !== '') { return this.authFailed(validity); }
+    this.toggleLoading();
+    const userData = { email: this.state.email, password: this.state.pass,
+      confirmPassword: this.state.confirmPass, remember: this.state.remember };
+    try {
+      const res = await axios.post('signup', userData);
+      this.successHandler(res, userData);
+    } catch(err) {
+      if (err.response) { return this.authFailed(err.response.data.msg); }
+      this.authFailed('There was an error signing up');
+    }
+  }
+
+  successHandler = (res, userData) => {
+    localStorage['token'] = res.data.token;
+    if (userData.remember) {
+      // expires in 7 days
+      localStorage['expirationDate'] = new Date(new Date().getTime() + 604800000);
+      localStorage['expirationTime'] = '604800000';
+    } else {
+      // expires in 3hr
+      localStorage['expirationDate'] = new Date(new Date().getTime() + 10800000);
+      localStorage['expirationTime'] = '10800000';
+    }
+    instance.defaults.headers.common['x-auth-token'] = res.data.token;
+    localStorage['email'] = userData.email;
+    this.clearFields();
+    this.props.isAuth();
   }
 
   render() {
-    const rememberDiv = (
-      <div className={this.state.error ? [classes.Remember, classes.Move].join(' ') : classes.Remember}>
-        <input type="checkbox" onChange={this.toggleRemember} checked={this.state.remember}/>
-        <p>Remember me</p>
-      </div>
-    );
-    const form = this.props.login ? (
-      <React.Fragment>
-        <form className={classes.Form} onSubmit={this.loginHandler}>
-          <input type="text" placeholder="Email" name="email" value={this.state.loginInfo.email}
-          onChange={this.changeLoginInfo}/>
-          <input type="password" placeholder="Password" name="password" value={this.state.loginInfo.password}
-          onChange={this.changeLoginInfo}/>
-          <p className={this.state.error ? [classes.ErrorMsg, classes.MoveError].join(' ') : classes.ErrorMsg}>
-            {this.state.errorMsg}
-          </p>
-          <button className={this.state.error ? classes.Move: undefined}>{this.props.login ? 'login' : 'create'}</button>
-        </form>
-        {rememberDiv}
-      </React.Fragment>
-    ) : (
-      <React.Fragment>
-        <form className={classes.Form} onSubmit={this.signupHandler}>
-          <input type="text" placeholder="Email" name="email" value={this.state.signupInfo.email}
-          onChange={this.changeSignupInfo}/>
-          <input type="password" placeholder="Password" name="password" value={this.state.signupInfo.password}
-          onChange={this.changeSignupInfo}/>
-          <input type="password" placeholder="Confirm Password" name="confirmPassword" value={this.state.signupInfo.confirmPassword}
-          onChange={this.changeSignupInfo}/>
-          <p className={this.state.error ? [classes.ErrorMsg, classes.MoveError].join(' ') : classes.ErrorMsg}>
-            {this.state.errorMsg}
-          </p>
-          <button className={this.state.error ? classes.Move: undefined}>{this.props.login ? 'login' : 'create'}</button>
-        </form>
-        {rememberDiv}
-      </React.Fragment>
-    );
-    const message = this.props.login ? (
-      <p className={classes.MessageSignup}>Not registered? <Link to="/signup" onClick={this.clearFields}>Create an account</Link></p>
-    ) : (
-      <p className={classes.MessageLogin}>Already registered? <Link to="/login" onClick={this.clearFields}>Login</Link></p>
-    );
     return (
       <div className={classes.Container}>
-        <div className={classes.FormContainer}>
-          <p className={classes.Demo}>See a demo <Link to="/demo" onClick={this.clearFields}>here</Link></p>
-          <h1 className={classes.Header}>Notely</h1>
-          {form}
-          {this.state.loading && <Spinner />}
-          {message}
+        <div className={classes.InnerContainer}>
+          <div className={classes.FormContainer}>
+            <p className={classes.Demo}>See a demo <Link to="/demo" onClick={this.clearFields}>here</Link></p>
+            <h1 className={this.props.login ? classes.LoginHeader : classes.SignupHeader}>Notely</h1>
+            <div className={classes.Form}>
+              <input placeholder="Email" value={this.state.email} onChange={this.emailHandler} />
+              <input type="password" placeholder="Password" value={this.state.pass} onChange={this.passHandler} />
+              {!this.props.login &&
+              <input type="password" placeholder="Confirm Password" value={this.state.confirmPass} onChange={this.confirmPassHandler} /> }
+            </div>
+            <p className={this.state.err ? (this.props.login ? classes.LoginErrMsg : classes.SignupErrMsg) :
+              (this.props.login ? classes.LoginHideErrMsg : classes.SignupHideErrMsg)}>{this.state.errMsg}</p>
+            <div className={this.state.err ? [classes.Move, classes.FormBottom].join(' ') : classes.FormBottom}>
+              <button className={classes.LoginBtn} onClick={this.props.login ? this.loginHandler : this.signupHandler}>
+                {this.props.login ? 'login' : 'create'}
+              </button>
+              <div className={classes.Remember}>
+                <input type="checkbox" onChange={this.toggleRemember} checked={this.state.remember}/>
+                <p>Remember me</p>
+              </div>
+            </div>
+            {this.state.loading && <Spinner auth />}
+            <p className={classes.Link}>{this.props.login ? 'Not registered? ' : 'Already registered? '}
+              <Link to={this.props.login? '/signup' : '/login'} onClick={this.clearFields}>{this.props.login ? 'Create an account' : 'Login'}</Link>
+            </p>
+          </div>
         </div>
       </div>
     );

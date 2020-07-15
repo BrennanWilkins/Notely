@@ -124,7 +124,7 @@
   overflow: hidden;
   max-height: 0;
   font-size: 13px;
-  transition: max-height 0.4s;
+  transition: all 400ms;
 }
 .InnerIcons {
   display: flex;

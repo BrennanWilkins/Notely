@@ -58,9 +58,7 @@ class Notely extends Component {
   }
 
   componentDidMount() {
-    if (window.innerWidth < 750) {
-      this.setState({ showNavBar: false });
-    }
+    if (window.innerWidth < 750) { this.setState({ showNavBar: false }); }
     if (this.props.demo) {
       // if in demo mode, preload example data
       const titleState = EditorState.createWithContent(ContentState.createFromText('Example Note'));
@@ -83,65 +81,50 @@ class Notely extends Component {
 
     // if not in demo mode, retrieve notebooks/notes from server
     axios.get('notebooks').then(res => {
-      if (res.status === 200) {
-        // map retrieved notebooks to notebook objects
-        const notebooks = res.data.notebooks.map(notebook => {
-          const notebookData = { title: notebook.title, default: notebook.default, id: notebook._id };
-          if (notebook.default) { this.setState({ defaultNotebook: notebookData }); }
-          return notebookData;
-        });
-        this.setState({ notebooks });
-      // not successful
-      } else {
-        return this.errorHandler('There was an error retrieving your notebooks.');
-      }
+      // map retrieved notebooks to notebook objects
+      const notebooks = res.data.notebooks.map(notebook => {
+        const notebookData = { title: notebook.title, default: notebook.default, id: notebook._id };
+        if (notebook.default) { this.setState({ defaultNotebook: notebookData }); }
+        return notebookData;
+      });
+      this.setState({ notebooks });
     }).catch(err => {
       return this.errorHandler('There was an error retrieving your notebooks.');
     });
 
     axios.get('notes').then(res => {
-      if (res.status === 200) {
-        // map retrieved notes to note objects
-        const resNotes = res.data.notes.map(note => {
-          return { title: note.title, body: note.body, favorite: note.favorite,
-            notebookId: note.notebookId, trash: note.trash, dateCreated: new Date(note.dateCreated),
-            date: new Date(note.date), id: note._id };
-        });
-        // sort data before setting state
-        const notes = resNotes.filter(note => !note.trash).sort((a, b) => {
-          return b.date.getTime() - a.date.getTime();
-        });
-        const shortcuts = resNotes.filter(note => note.favorite).sort((a, b) => {
-          return b.date.getTime() - a.date.getTime();
-        }).map(shortcut => ({ title: shortcut.title, id: shortcut.id }));
-        const trash = resNotes.filter(note => note.trash).sort((a, b) => {
-          return b.date.getTime() - a.date.getTime();
-        });
-        this.setState({ notes, shortcuts, trash });
-      // if not successful
-      } else {
-        return this.errorHandler('There was an error retrieving your notes.');
-      }
+      // map retrieved notes to note objects
+      const resNotes = res.data.notes.map(note => {
+        return { title: note.title, body: note.body, favorite: note.favorite,
+          notebookId: note.notebookId, trash: note.trash, dateCreated: new Date(note.dateCreated),
+          date: new Date(note.date), id: note._id };
+      });
+      // sort data before setting state
+      const notes = resNotes.filter(note => !note.trash).sort((a, b) => {
+        return b.date.getTime() - a.date.getTime();
+      });
+      const shortcuts = resNotes.filter(note => note.favorite).sort((a, b) => {
+        return b.date.getTime() - a.date.getTime();
+      }).map(shortcut => ({ title: shortcut.title, id: shortcut.id }));
+      const trash = resNotes.filter(note => note.trash).sort((a, b) => {
+        return b.date.getTime() - a.date.getTime();
+      });
+      this.setState({ notes, shortcuts, trash });
     }).catch(err => {
       return this.errorHandler('There was an error retrieving your notes.');
     });
   }
 
   // called if error sending request to server
-  errorHandler = (errorMsg) => {
-    this.setState({ error: true, errorMsg });
-  }
+  errorHandler = (errorMsg) => this.setState({ error: true, errorMsg })
 
   // called when expand button is pressed to expand/contract note content
-  expandDetail = () => {
-    this.setState(prevState => { return { detailExpanded: !prevState.detailExpanded }});
-  }
+  expandDetail = () => this.setState(prev => ({ detailExpanded: !prev.detailExpanded }))
 
   // called when shortcut link is clicked in nav bar
   goToShortcutHandler = (id) => {
     // set current note to note matching id
     const currentNote = this.state.notes.filter(note => note.id === id)[0];
-
     // resets all UI state and sets note content to be in shortcut expand layout
     this.resetSearchUI();
     this.resetTimeUI();
@@ -195,14 +178,10 @@ class Notely extends Component {
   }
 
   // resets sortStyle to updated most recently
-  resetSort = () => {
-    this.setState({ sortStyle: 'Updated Most' });
-  }
+  resetSort = () => this.setState({ sortStyle: 'Updated Most' })
 
   // resets the nav bar panels to closed if open
-  resetNavPanels = () => {
-    this.setState({ showNotebookPanel: false, showShortcutPanel: false });
-  }
+  resetNavPanels = () => this.setState({ showNotebookPanel: false, showShortcutPanel: false })
 
   // called when all notes clicked in nav bar
   showAllHandler = () => {
@@ -246,49 +225,34 @@ class Notely extends Component {
         if (noteCount.length === 0) { break; }
         else { currentNote.id = Math.floor(Math.random() * 100000); }
       }
-
-      notes.unshift(currentNote);
-      if (this.state.showTrash || this.state.showSearch) {
-        this.setState({ currentNotebook: null });
-      } else {
-        const currentNotebookNotes = [...this.state.currentNotebookNotes];
-        currentNotebookNotes.unshift(currentNote);
-        this.setState({ currentNotebookNotes });
-      }
-
-      this.resetSearchUI();
-      this.resetNavPanels();
-      this.resetTimeUI();
-      return this.setState({ currentNote, notes, emptyNotebook: false,
-        shortcutExpand: false, showTrash: false });
+      return this.createNewNoteHandlerHelper(notes, currentNote);
     }
 
     // if not in demo send new note request to server
     axios.post('notes', { ...currentNote }).then(res => {
-        if (res.status === 200) {
-          // set new note's id to server generated id
-          currentNote.id = res.data.noteId;
-          const notes = [...this.state.notes];
-          notes.unshift(currentNote);
-          if (this.state.showTrash || this.state.showSearch) {
-            this.setState({ currentNotebook: null });
-          } else {
-            const currentNotebookNotes = [...this.state.currentNotebookNotes];
-            currentNotebookNotes.unshift(currentNote);
-            this.setState({ currentNotebookNotes });
-          }
-
-          this.resetSearchUI();
-          this.resetNavPanels();
-          this.resetTimeUI();
-          return this.setState({ currentNote, notes, emptyNotebook: false,
-            shortcutExpand: false, showTrash: false });
-        }
-        // if not sucessful
-        return this.errorHandler('There was an error creating a new note.');
+      // set new note's id to server generated id
+      currentNote.id = res.data.noteId;
+      const notes = [...this.state.notes];
+      return this.createNewNoteHandlerHelper(notes, currentNote);
     }).catch(err => {
       return this.errorHandler('There was an error creating a new note.');
     });
+  }
+
+  createNewNoteHandlerHelper = (notes, currentNote) => {
+    notes.unshift(currentNote);
+    if (this.state.showTrash || this.state.showSearch) {
+      this.setState({ currentNotebook: null });
+    } else {
+      const currentNotebookNotes = [...this.state.currentNotebookNotes];
+      currentNotebookNotes.unshift(currentNote);
+      this.setState({ currentNotebookNotes });
+    }
+    this.resetSearchUI();
+    this.resetNavPanels();
+    this.resetTimeUI();
+    this.setState({ currentNote, notes, emptyNotebook: false,
+      shortcutExpand: false, showTrash: false });
   }
 
   // called when note added/removed from shortcuts
@@ -323,27 +287,17 @@ class Notely extends Component {
 
     // if not in demo send request to server
     axios.put('notes/' + currentNote.id, { ...currentNote }).then(res => {
-      if (res.status === 200) {
-        return this.setState({ currentNote, notes, shortcuts, currentNotebookNotes, showTrash: false });
-      }
-      // not successful
-      return this.errorHandler('There was an error creating the shortcut.');
+      return this.setState({ currentNote, notes, shortcuts, currentNotebookNotes, showTrash: false });
     }).catch(err => {
       return this.errorHandler('There was an error creating the shortcut.');
     });
   }
 
-  // called when move note panel is opened/closed
-  toggleMoveToHandler = () => {
-    this.setState(prevState => { return { showMoveTo: !prevState.showMoveTo }});
-    // set selectedNotebookId back to null once panel is opened/closed
-    this.setState({ selectedNotebookId: null });
-  }
+  // called when move note panel is opened/closed, set selectedNotebookId back to null
+  toggleMoveToHandler = () => this.setState(prev => ({ showMoveTo: !prev.showMoveTo, selectedNotebookId: null }))
 
   // called when a notebook is clicked in move note panel
-  moveNoteHandler = (id) => {
-    this.setState({ selectedNotebookId: id });
-  }
+  moveNoteHandler = (id) => this.setState({ selectedNotebookId: id })
 
   // called when move is clicked in move note panel
   moveNoteHandlerConfirm = () => {
@@ -375,15 +329,10 @@ class Notely extends Component {
     }
     // if not in demo mode then send request to server
     axios.put('notes/' + currNote.id, { ...currNote, trash: false }).then(res => {
-      if (res.status === 200) {
-        this.resetSort();
-        this.resetSearchUI();
-        return this.setState({ currentNote: currNote, notes, currentNotebook,
-          currentNotebookNotes, selectedNotebookId: null, showMoveTo: false });
-      }
-      // if not successful
-      this.setState({ showMoveTo: false });
-      return this.errorHandler('There was an error moving the note.');
+      this.resetSort();
+      this.resetSearchUI();
+      return this.setState({ currentNote: currNote, notes, currentNotebook,
+        currentNotebookNotes, selectedNotebookId: null, showMoveTo: false });
     }).catch(err => {
       this.setState({ showMoveTo: false });
       return this.errorHandler('There was an error moving the note.');
@@ -391,9 +340,7 @@ class Notely extends Component {
   }
 
   // shows the delete note confirm panel
-  deleteNoteHandler = () => {
-    this.setState({ showDeletePanel: true });
-  }
+  deleteNoteHandler = () => this.setState({ showDeletePanel: true })
 
   // called if delete button clicked in delete note panel
   confirmDeleteNote = () => {
@@ -414,13 +361,8 @@ class Notely extends Component {
     }
     // if not in demo mode then send server request
     axios.put('notes/' + oldNote.id, { ...oldNote, trash: true }).then(res => {
-      if (res.status === 200) {
-        return this.setState({ trash, showDeletePanel: false, notes, shortcuts,
-          currentNotebookNotes, emptyNotebook, currentNote, shortcutExpand: false });
-      }
-      // not successful
-      this.closeDeletePanel();
-      return this.errorHandler('There was an error deleting the note.');
+      return this.setState({ trash, showDeletePanel: false, notes, shortcuts,
+        currentNotebookNotes, emptyNotebook, currentNote, shortcutExpand: false });
     }).catch(err => {
       this.closeDeletePanel();
       return this.errorHandler('There was an error deleting the note.');
@@ -428,9 +370,7 @@ class Notely extends Component {
   }
 
   // closes the delete note panel
-  closeDeletePanel = () => {
-    this.setState({ showDeletePanel: false });
-  }
+  closeDeletePanel = () => this.setState({ showDeletePanel: false })
 
   // called when duplicate note button clicked
   duplicateNoteHandler = () => {
@@ -455,54 +395,36 @@ class Notely extends Component {
         if (noteCount.length === 0) { break; }
         else { currNote.id = Math.floor(Math.random() * 100000); }
       }
-      notes.unshift(currNote);
-      const currentNotebookNotes = [...this.state.currentNotebookNotes];
-      currentNotebookNotes.unshift(currNote);
-      // if not in search mode then update the current notebook
-      if (!this.state.showSearch) {
-        const currentNotebook = this.state.notebooks.filter(notebook => notebook.id === currNote.notebookId)[0];
-        if (this.state.shortcutExpand) {
-          this.setState({ currentNotebook });
-        }
-      }
-      return this.setState({ notes, currentNote: currNote, currentNotebookNotes, shortcutExpand: false });
+      return this.duplicateNoteHandlerHelper(notes, currNote);
     }
     // if not in demo mode send server request
     axios.post('notes', { ...currNote }).then(res => {
-      if (res.status === 200) {
-        // set new note's id to server generated id
-        currNote.id = res.data.noteId;
-        const notes = [...this.state.notes];
-        notes.unshift(currNote);
-        const currentNotebookNotes = [...this.state.currentNotebookNotes];
-        currentNotebookNotes.unshift(currNote);
-        // if not in search mode then update the current notebook
-        if (!this.state.showSearch) {
-          const currentNotebook = this.state.notebooks.filter(notebook => notebook.id === currNote.notebookId)[0];
-          if (this.state.shortcutExpand) {
-            this.setState({ currentNotebook });
-          }
-        }
-        return this.setState({ notes, currentNote: currNote, currentNotebookNotes, shortcutExpand: false });
-      }
-      // not successful
-      return this.errorHandler('There was an error duplicating the note.');
+      // set new note's id to server generated id
+      currNote.id = res.data.noteId;
+      const notes = [...this.state.notes];
+      return this.duplicateNoteHandlerHelper(notes, currNote);
     }).catch(err => {
       return this.errorHandler('There was an error duplicating the note.');
     });
   }
 
-  // called when new notebook button clicked to show/remove the panel
-  toggleNotebookHandler = () => {
-    this.setState(prevState => {
-      return { showAddNotebook: !prevState.showAddNotebook, changeNotebookText: '' };
-    });
+  duplicateNoteHandlerHelper = (notes, currNote) => {
+    notes.unshift(currNote);
+    const currentNotebookNotes = [...this.state.currentNotebookNotes];
+    currentNotebookNotes.unshift(currNote);
+    // if not in search mode then update the current notebook
+    if (!this.state.showSearch) {
+      const currentNotebook = this.state.notebooks.filter(notebook => notebook.id === currNote.notebookId)[0];
+      if (this.state.shortcutExpand) { this.setState({ currentNotebook }); }
+    }
+    this.setState({ notes, currentNote: currNote, currentNotebookNotes, shortcutExpand: false });
   }
 
+  // called when new notebook button clicked to show/remove the panel
+  toggleNotebookHandler = () => this.setState(prev => ({ showAddNotebook: !prev.showAddNotebook, changeNotebookText: '' }))
+
   // set the add notebook panel input value
-  changeNotebookTextHandler = (e) => {
-    this.setState({ changeNotebookText: e.target.value });
-  }
+  changeNotebookTextHandler = (e) => this.setState({ changeNotebookText: e.target.value })
 
   // called when create clicked in add notebook panel
   confirmNotebookHandler = () => {
@@ -519,38 +441,29 @@ class Notely extends Component {
       const newNotebook = { title: notebookTitle, id: demoId, default: false };
       const notebooks = [...this.state.notebooks];
       notebooks.unshift(newNotebook);
-
-      this.resetSort();
-      this.resetTimeUI();
-      this.resetSearchUI();
-      this.resetNavPanels();
-      return this.setState({ notebooks, currentNotebook: newNotebook, emptyNotebook: true,
-        showArrow: false, currentNotebookNotes: [], currentNote: null, showAddNotebook: false,
-        changeNotebookText: '', shortcutExpand: false, showTrash: false });
+      return this.confirmNotebookHandlerHelper(notebooks, newNotebook);
     }
     // if not in demo mode then send server request
     axios.post('notebooks', { title: notebookTitle }).then(res => {
-      if (res.status === 200) {
-        // set notebook id to server generated id
-        const newNotebook = { title: notebookTitle, id: res.data.notebookId, default: false };
-        const notebooks = [...this.state.notebooks];
-        notebooks.unshift(newNotebook);
-
-        this.resetSort();
-        this.resetTimeUI();
-        this.resetSearchUI();
-        this.resetNavPanels();
-        return this.setState({ notebooks, currentNotebook: newNotebook, emptyNotebook: true,
-          showArrow: false, currentNotebookNotes: [], currentNote: null, showAddNotebook: false,
-          changeNotebookText: '', shortcutExpand: false, showTrash: false });
-      }
-      // not successful
-      this.toggleNotebookHandler();
-      return this.errorHandler('There was an error creating the notebook.');
+      // set notebook id to server generated id
+      const newNotebook = { title: notebookTitle, id: res.data.notebookId, default: false };
+      const notebooks = [...this.state.notebooks];
+      notebooks.unshift(newNotebook);
+      return this.confirmNotebookHandlerHelper(notebooks, newNotebook);
     }).catch(err => {
       this.toggleNotebookHandler();
       return this.errorHandler('There was an error creating the notebook.');
     });
+  }
+
+  confirmNotebookHandlerHelper = (notebooks, newNotebook) => {
+    this.resetSort();
+    this.resetTimeUI();
+    this.resetSearchUI();
+    this.resetNavPanels();
+    return this.setState({ notebooks, currentNotebook: newNotebook, emptyNotebook: true,
+      showArrow: false, currentNotebookNotes: [], currentNote: null, showAddNotebook: false,
+      changeNotebookText: '', shortcutExpand: false, showTrash: false });
   }
 
   // called when rename notebook button clicked
@@ -566,9 +479,7 @@ class Notely extends Component {
   }
 
   // closes the rename notebook panel & resets input value
-  closeRenameNotebook = () => {
-    this.setState({ showRenameNotebook: false, changeNotebookText: '' });
-  }
+  closeRenameNotebook = () => this.setState({ showRenameNotebook: false, changeNotebookText: '' })
 
   // called when rename button clicked in rename notebook panel
   confirmRenameNotebookHandler = () => {
@@ -586,13 +497,8 @@ class Notely extends Component {
     }
     // if not in demo mode send server request
     axios.put('notebooks/' + currNotebook.id, { title: currNotebook.title, default: currNotebook.default }).then(res => {
-      if (res.status === 200) {
-        return this.setState({ changeNotebookText: '', currentNotebook: currNotebook,
-          notebooks, showRenameNotebook: false });
-      }
-      // not successful
-      this.closeRenameNotebook();
-      return this.errorHandler('There was an error renaming the notebook.');
+      return this.setState({ changeNotebookText: '', currentNotebook: currNotebook,
+        notebooks, showRenameNotebook: false });
     }).catch(err => {
       this.closeRenameNotebook();
       return this.errorHandler('There was an error renaming the notebook.');
@@ -602,15 +508,18 @@ class Notely extends Component {
   // called when delete notebook button clicked, opens/closes panel
   deleteNotebookHandler = () => {
     if (this.state.showSearch) { return; }
-    this.setState(prevState => { return { showDeleteNotebook: !prevState.showDeleteNotebook }});
+    this.setState(prev => ({ showDeleteNotebook: !prev.showDeleteNotebook }));
   }
 
   // called when delete button clicked in delete notebook panel
   confirmDeleteNotebookHandler = () => {
     const notebooks = this.state.notebooks.filter(notebook => notebook.id !== this.state.currentNotebook.id);
-    const shortcutNote = this.state.notes.filter(note => note.notebookId === this.state.currentNotebook.id)[0];
-    const shortcuts = this.state.shortcuts.filter(shortcut => shortcut.id !== shortcutNote.id);
     const notes = this.state.notes.filter(note => note.notebookId !== this.state.currentNotebook.id);
+    const shortcuts = this.state.shortcuts.filter(shortcut => {
+      const matchingNote = this.state.notes.find(note => note.id === shortcut.id);
+      return matchingNote.notebookId !== this.state.currentNotebook.id;
+    });
+    const emptyNotebook = notes.length === 0;
     const trash = [...this.state.trash];
     // adds all notes in the notebook to trash
     for (let note of this.state.currentNotebookNotes) { trash.unshift(note); }
@@ -620,18 +529,13 @@ class Notely extends Component {
     if (this.props.demo) {
       this.resetSort();
       return this.setState({ trash, currentNote: null, defaultNotebook, currentNotebook: null,
-        notebooks, shortcuts, notes, showDeleteNotebook: false });
+        notebooks, shortcuts, notes, showDeleteNotebook: false, emptyNotebook });
     }
     // if not in demo mode send server request
     axios.delete('notebooks/' + this.state.currentNotebook.id).then(res => {
-      if (res.status === 200) {
-        this.resetSort();
-        return this.setState({ trash, currentNote: null, defaultNotebook, currentNotebook: null,
-          notebooks, shortcuts, notes, showDeleteNotebook: false });
-      }
-      // not successful
-      this.deleteNotebookHandler();
-      return this.errorHandler('There was an error deleting the notebook.');
+      this.resetSort();
+      return this.setState({ trash, currentNote: null, defaultNotebook, currentNotebook: null,
+        notebooks, shortcuts, notes, showDeleteNotebook: false, emptyNotebook });
     }).catch(err => {
       this.deleteNotebookHandler();
       return this.errorHandler('There was an error deleting the notebook.');
@@ -643,17 +547,11 @@ class Notely extends Component {
     if (this.state.showSearch) { return; }
     const currentNotebook = { ...this.state.currentNotebook };
     currentNotebook.default = true;
-    if (this.props.demo) {
-      return this.setState({ defaultNotebook: currentNotebook });
-    }
+    if (this.props.demo) { return this.setState({ defaultNotebook: currentNotebook }); }
     // if not in demo mode send server request
     // server sets default value to true for currentNotebook & false for all others
     axios.put('notebooks/setDefault/' + currentNotebook.id, { ...currentNotebook }).then(res => {
-      if (res.status === 200) {
-        return this.setState({ defaultNotebook: currentNotebook });
-      }
-      // not successful
-      return this.errorHandler('There was an error setting the default notebook.');
+      return this.setState({ defaultNotebook: currentNotebook });
     }).catch(err => {
       return this.errorHandler('There was an error setting the default notebook.');
     });
@@ -676,17 +574,11 @@ class Notely extends Component {
 
   // called when empty trash button clicked in trash mode
   emptyTrashHandler = () => {
-    if (this.props.demo) {
-      return this.setState({ trash: [] });
-    }
+    if (this.props.demo) { return this.setState({ trash: [] }); }
     // if not in demo send server request
     // deletes all notes in trash state
     for (let note of this.state.trash) {
-      axios.delete('notes/' + note.id).then(res => {
-        if (res.data.msg !== 'Success.') {
-          return this.errorHandler('There was an error while emptying the trash.');
-        }
-      }).catch(err => {
+      axios.delete('notes/' + note.id).catch(err => {
         return this.errorHandler('There was an error while emptying the trash.');
       });
     }
@@ -716,11 +608,7 @@ class Notely extends Component {
     }
     // if not in demo mode send server request
     axios.put('notes/' + currentNote.id, { ...currentNote, trash: false }).then(res => {
-      if (res.status === 200) {
-        return this.setState({ notes, trash, shortcuts, currentNote: newCurrentNote });
-      }
-      // not successful
-      return this.errorHandler('There was an error restoring the note.');
+      return this.setState({ notes, trash, shortcuts, currentNote: newCurrentNote });
     }).catch(err => {
       return this.errorHandler('There was an error restoring the note.');
     });
@@ -731,25 +619,17 @@ class Notely extends Component {
     // remove note from trash
     const trash = this.state.trash.filter(note => note.id !== this.state.currentNote.id);
     const currentNote = trash.length === 0 ? null : trash[0];
-    if (this.props.demo) {
-      return this.setState({ trash, currentNote });
-    }
+    if (this.props.demo) { return this.setState({ trash, currentNote }); }
     // if not in demo mode send server request
     axios.delete('notes/' + this.state.currentNote.id).then(res => {
-      if (res.status === 200) {
-        return this.setState({ trash, currentNote });
-      }
-      // not successful
-      return this.errorHandler('There was an error deleting the note.');
+      return this.setState({ trash, currentNote });
     }).catch(err => {
       return this.errorHandler('There was an error deleting the note.');
     });
   }
 
   // sets new sort style from sort style panel
-  sortStyleHandler = (option) => {
-    this.setState({ sortStyle: option });
-  }
+  sortStyleHandler = (option) => this.setState({ sortStyle: option })
 
   // updates search bar input value
   setSearchValueHandler = (e) => {
@@ -758,9 +638,7 @@ class Notely extends Component {
   }
 
   // clears the input value in search bar
-  clearSearchHandler = () => {
-    this.setState({ searchValue: '' });
-  }
+  clearSearchHandler = () => this.setState({ searchValue: '' })
 
   // if enter pressed then show the search results
   goToSearchHandler = () => {
@@ -851,11 +729,7 @@ class Notely extends Component {
       this.setState({ saved: 'Saving', savedCount: this.state.savedCount + 1 });
       // send server request to update note if user hasnt typed in 2000ms
       axios.put('notes/' + currNote.id, { ...currNote }).then(res => {
-        if (res.status === 200) {
-          return this.setState({ saved: 'Saved' });
-        }
-        // not successful
-        return this.setState({ saved: 'Not Saved' });
+        return this.setState({ saved: 'Saved' });
       }).catch(err => {
         return this.setState({ saved: 'Not Saved' });
       });
@@ -865,49 +739,34 @@ class Notely extends Component {
   }
 
   // clears error panel if is open
-  closeErrorPanel = () => {
-    this.setState({ error: false, errorMsg: '' });
-  }
+  closeErrorPanel = () => this.setState({ error: false, errorMsg: '' })
 
   // sets the text of the navbar popup when nav bar is collapsed
-  setNavPopupText = (popupText) => {
-    this.setState({ popupText, showNavPopup: true });
-  }
+  setNavPopupText = (popupText) => this.setState({ popupText, showNavPopup: true })
 
   // clears the nav bar popup when not hovering over button in nav bar
-  hideNavPopup = () => {
-    this.setState({ showNavPopup: false });
-  }
+  hideNavPopup = () => this.setState({ showNavPopup: false })
 
   // called when expand nav bar button clicked, expands/collapses the nav bar
   navCollapseHandler = () => {
-    this.setState(prevState => {
-      if (prevState.showNavBar) {
-        return { showNavBar: !prevState.showNavBar, popupText: 'Expand Sidebar' };
-      }
-      return { showNavBar: !prevState.showNavBar, popupText: 'Collapse Sidebar' };
+    this.setState(prev => {
+      if (prev.showNavBar) { return { showNavBar: !prev.showNavBar, popupText: 'Expand Sidebar' }; }
+      return { showNavBar: !prev.showNavBar, popupText: 'Collapse Sidebar' };
     });
   }
 
   // called when hovering over notebook button when nav bar collapsed
-  showNotebookPanelHandler = () => {
-    this.setState({ showNotebookPanel: true });
-  }
+  showNotebookPanelHandler = () => this.setState({ showNotebookPanel: true })
 
   // called when nav bar is collapsed & not hovering over notebook button/panel
   hideNotebookPanelHandler = (e) => {
-    // if hovering out of window then dont close
-    if (e.relatedTarget === window) { return; }
-    // if hovering over notebook panel dont close
-    if (this.notebookPanel.contains(e.relatedTarget)) { return; }
-    // else close the panel
+    // if hovering out of window/over notebook panel then dont close
+    if (e.relatedTarget === window || this.notebookPanel.contains(e.relatedTarget)) { return; }
     this.setState({ showNotebookPanel: false });
   }
 
   // called when hovering over shortcut button when nav bar collapsed
-  showShortcutPanelHandler = () => {
-    this.setState({ showShortcutPanel: true });
-  }
+  showShortcutPanelHandler = () => this.setState({ showShortcutPanel: true })
 
   // called when leaving either the notebook/shortcut panel & closes the panels
   navBarPanelLeaveHandler = () => {
@@ -924,34 +783,30 @@ class Notely extends Component {
     this.setState({ showShortcutPanel: false });
   }
 
-  // called when stopwatch clicked in nav bar, shows stopwatch UI
-  goToStopwatch = () => {
+  prodReset = () => {
     this.resetSort();
     this.resetSearchUI();
     this.resetNavPanels();
     this.setState({ currentNote: null, shortcutExpand: true, currentNotebook: null,
-      emptyNotebook: false, showTrash: false, showStopwatch: true, showTimer: false,
-      showPomodoro: false });
+      emptyNotebook: false, showTrash: false });
+  }
+
+  // called when stopwatch clicked in nav bar, shows stopwatch UI
+  goToStopwatch = () => {
+    this.prodReset();
+    this.setState({ showStopwatch: true, showTimer: false, showPomodoro: false })
   }
 
   // called when timer clicked in nav bar, shows timer UI
   goToTimer = () => {
-    this.resetSort();
-    this.resetSearchUI();
-    this.resetNavPanels();
-    this.setState({ currentNote: null, shortcutExpand: true, currentNotebook: null,
-      emptyNotebook: false, showTrash: false, showStopwatch: false, showTimer: true,
-      showPomodoro: false });
+    this.prodReset();
+    this.setState({ showStopwatch: false, showTimer: true, showPomodoro: false });
   }
 
   // called when pomodoro timer clicked in nav bar, shows timer UI
   goToPomodoro = () => {
-    this.resetSort();
-    this.resetSearchUI();
-    this.resetNavPanels();
-    this.setState({ currentNote: null, shortcutExpand: true, currentNotebook: null,
-      emptyNotebook: false, showTrash: false, showStopwatch: false, showTimer: false,
-      showPomodoro: true });
+    this.prodReset();
+    this.setState({ showStopwatch: false, showTimer: false, showPomodoro: true });
   }
 
   render() {

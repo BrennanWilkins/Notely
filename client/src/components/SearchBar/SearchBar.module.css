@@ -46,6 +46,8 @@
   border: 0;
   cursor: pointer;
   display: flex;
+  position: relative;
+  left: -4px;
 }
 .XIconActive:hover {
   color: rgb(43, 43, 43);

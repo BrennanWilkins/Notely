@@ -110,9 +110,7 @@ class NavBar extends Component {
 
   render() {
     // if viewport width < 751px & navbar is open then add outside click event listener
-    if (window.innerWidth < 751 && !this.props.collapse) {
-      this.showNavBarHandler();
-    }
+    if (window.innerWidth < 751 && !this.props.collapse) { this.showNavBarHandler(); }
     const shortcutCaretClass = this.state.showShortcuts ? classes.NavBarCaretDown : classes.NavBarCaretRight;
     const notebookCaretClass = this.state.showNotebooks ? classes.NavBarCaretDown : classes.NavBarCaretRight;
     const productivityCaretClass = this.state.showProductivity ? classes.NavBarCaretDown : classes.NavBarCaretRight;
@@ -220,17 +218,17 @@ class NavBar extends Component {
             <span style={{marginLeft: '10px'}} className={[productivityCaretClass, classes.NavBarCaret].join(' ')}>{caretRight}</span>
             <span>{clockIcon}</span>Productivity
           </div>
-          <div style={this.state.showProductivity ? { maxHeight: '80px' } : {}}
+          <div style={this.state.showProductivity ? { maxHeight: '80px' } : { height: '0' }}
           onClick={this.props.goToStopwatch} className={classes.NavLinksInner}>
             <span className={classes.InnerIcons}>{stopwatchIcon}</span>
             <span className={classes.InnerText}>Stopwatch</span>
           </div>
-          <div style={this.state.showProductivity ? { maxHeight: '80px' } : {}}
+          <div style={this.state.showProductivity ? { maxHeight: '80px' } : { height: '0' }}
           onClick={this.props.goToTimer} className={classes.NavLinksInner}>
             <span className={classes.InnerIcons}>{timerIcon}</span>
             <span className={classes.InnerText}>Timer</span>
           </div>
-          <div style={this.state.showProductivity ? { maxHeight: '80px' } : {}}
+          <div style={this.state.showProductivity ? { maxHeight: '80px' } : { height: '0' }}
           onClick={this.props.goToPomodoro} className={classes.NavLinksInner}>
             <span className={classes.InnerIcons}>{pomodoroIcon}</span>
             <span className={classes.InnerText}>Pomodoro Timer</span>

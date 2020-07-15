@@ -1,4 +1,4 @@
-.loader {
+.Loader, .AuthLoader {
   color: #6888fc;
   font-size: 20px;
   width: 1em;
@@ -14,6 +14,11 @@
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
+}
+.AuthLoader {
+  font-size: 14px;
+  top: calc(50% - 14px);
+  left: calc(50% - 14px);
 }
 @-webkit-keyframes load4 {
   0%,

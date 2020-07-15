@@ -20,46 +20,37 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
+let expirationTimeout;
+
 class App extends Component {
   state = {
     isAuth: false
-  }
-
-  handleWindowClose = () => {
-    // if remember me not chosen, log user out when window closes
-    if (localStorage['remember'] === 'false') {
-      localStorage.removeItem('token');
-      localStorage.removeItem('remember');
-      localStorage.removeItem('email');
-    }
   }
 
   logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('remember');
     localStorage.removeItem('email');
+    localStorage.removeItem('expirationDate');
+    localStorage.removeItem('expirationTime');
     delete instance.defaults.headers.common['x-auth-token'];
     this.setState({ isAuth: false });
   }
 
   componentDidMount() {
-    // event listener for closing the window
-    window.addEventListener('beforeunload', this.handleWindowClose);
     const token = localStorage['token'];
-    // if ls contains token, user is authenticated
-    if (token) {
-      instance.defaults.headers.common['x-auth-token'] = token;
-      this.setState({ isAuth: true });
-    }
-  }
-
-  componentWillUnmount() {
-    // remove window close event listener on unmount
-    window.removeEventListener('beforeunload', this.handleWindowClose);
+    // if ls contains token, try autologin
+    if (!localStorage['token'] || !localStorage['expirationDate']) { return; }
+    if (new Date(localStorage['expirationDate']) <= new Date()) { return this.logout(); }
+    instance.defaults.headers.common['x-auth-token'] = localStorage['token'];
+    const newTime = new Date(localStorage['expirationDate']).getTime() - new Date().getTime();
+    localStorage['expirationTime'] = newTime;
+    this.isAuthHandler();
   }
 
   isAuthHandler = () => {
     this.setState({ isAuth: true });
+    expirationTimeout = setTimeout(() => this.logout(), Number(localStorage['expirationTime']));
   }
 
   render() {
@@ -76,13 +67,13 @@ class App extends Component {
       </Switch>
     ) : (
       <Switch>
-        <Route exact path="/login" render={() => <Auth login={true} isAuth={this.isAuthHandler}/>} />
-        <Route exact path="/signup" render={() => <Auth login={false} isAuth={this.isAuthHandler}/>} />
+        <Route exact path="/login" render={() => <Auth login isAuth={this.isAuthHandler} />} />
+        <Route exact path="/signup" render={() => <Auth login={false} isAuth={this.isAuthHandler} />} />
         <Route exact path="/demo" render={() => <Suspense fallback={<Spinner />}><Notely demo /></Suspense>} />
         <Redirect to="/login" />
       </Switch>
     );
-    // store is provided to persist the productivity state
+    // store used to persist productivity state
     return (
       <Provider store={store}>
         <BrowserRouter>
